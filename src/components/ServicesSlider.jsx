@@ -7,8 +7,6 @@ import hamamat from '../assets/images/Hamamat.jpg';
 import kuriya from '../assets/images/kuriya.jpg';
 import hamamatyellow from '../assets/images/hamamatyellow.jpg';
 import sheacombo from '../assets/images/shea combo.jpg';
-import poolside from '../assets/images/poolside yoga.jpg';
-
 
 const services =
 

@@ -3,6 +3,9 @@ import heroImage from "../assets/images/women banner.jpg";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Hero = () => {
   const titleRef = useRef(null);
@@ -66,12 +69,13 @@ const Hero = () => {
   // SEARCH AVAILABLE SLOTS
 const handleSearch = async () => {
   if (!selectedDate) return;
+  if (!selectedService?.value) return;
 
   const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
 
   setLoading(true);
 
-  const res = await fetch("http://localhost:5000/get-available-slots", {
+  const res = await fetch("https://sheaspa-backend.onrender.com/get-available-slots", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -106,40 +110,80 @@ const handleSearch = async () => {
   };
 
   // CREATE BOOKING
-  const handleSlotClick = async (slot) => {
-    const startTime = convertTo24Hour(slot);
+  const handleSlotClick = (slot) => {
+    console.log(selectedDate,"selectedDateselectedDate")
+  toast(
+    ({ closeToast }) => (
+      <div>
+        <p>Are you sure you want to book <b>{slot}</b>?</p>
 
-    const endHour = parseInt(startTime.split(":")[0]) + 1;
-    const endTime = `${endHour.toString().padStart(2, "0")}:00`;
+        <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+          <button
+            style={{ padding: "6px 12px", background: "#28a745", color: "white", border: "none" }}
+            onClick={() => {
+              closeToast();
+              confirmBooking(slot);
+            }}
+          >
+            Yes
+          </button>
 
-    const formattedDate = selectedDate.toISOString().split("T")[0];
+          <button
+            style={{ padding: "6px 12px", background: "#ccc", border: "none" }}
+            onClick={closeToast}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ),
+    { autoClose: false , containerId: "slotConfirm"},
+  );
 
-    const response = await fetch("http://localhost:5000/create-booking", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: "Praveen",
-        service: selectedService?.value || "Massage",
-        whatsapp: "+98109819282929",
-        email: "ajajdndj@gamail.com",
-        date: formattedDate,
-        startTime,
-        endTime
-      })
-    });
+};
+const confirmBooking = async (slot) => {
 
-    const result = await response.json();
+  const startTime = convertTo24Hour(slot);
 
-    if (result.success) {
-      alert("Booking Confirmed!");
-      handleSearch(); // refresh slots
-    }
-  };
+  const endHour = parseInt(startTime.split(":")[0]) + 1;
+  const endTime = `${endHour.toString().padStart(2, "0")}:00`;
 
+  const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
+
+  const response = await fetch("https://sheaspa-backend.onrender.com/create-booking", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: "Praveen",
+      service: selectedService?.value || "Massage",
+      whatsapp: "+98109819282929",
+      email: "ajajdndj@gamail.com",
+      date: formattedDate,
+      startTime,
+      endTime
+    })
+  });
+
+  const result = await response.json();
+  if (result.success) {
+    toast.success("Booking Confirmed!");
+    handleSearch();
+  } else {
+    toast.error("Booking Failed");
+  }
+};
   return (
     <section id="home" className="section hero bg-image-full">
+      <ToastContainer
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick
+      pauseOnHover
+    />
       <div className="z-index-1">
         <div className="container-default">
           <div className="inner-container _1070px center">
@@ -185,6 +229,7 @@ const handleSearch = async () => {
                   showYearDropdown
                   dropdownMode="select"
                   className="hero-datepicker"
+                   minDate={new Date()}
                 />
 
                 {/* AUTOCOMPLETE */}
@@ -205,7 +250,13 @@ const handleSearch = async () => {
             
    {/* LOADING */}
               {loading && <p style={{color:"white"}}>Checking availability...</p>}
-
+ <ToastContainer
+  containerId="slotConfirm"
+  position="top-center"
+  autoClose={false}
+  newestOnTop
+  style={{ top: "40%" }}
+/> 
               {/* AVAILABLE SLOTS */}
               {availableSlots.length > 0 && (
                 <div className="slots-container">
