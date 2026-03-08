@@ -25,35 +25,30 @@ const timings = [
 
 const VisitAndContact = () => {
   return (
-    <section className="section top-bottom-90px" style={{paddingBottom:100}}>
+    <section className="section top-bottom-90px" style={{ paddingBottom: 100 }}>
       <div className="container-default">
-
         {/* GRID */}
-        <div
-          className="grid-2-columns"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "20px",
-            alignItems: "flex-start",
-          }}
-        >
-
+        <div className="grid-2-columns" style={{ alignItems: "start" }}>
           {/* LEFT SIDE - TIMINGS */}
-         <div
-  className="card"
-  style={{
-    padding: "25px",
-    background: "#ecd8c480",
-    border:"none",
-    // borderRadius: "12px",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
-    height: "100%",
-  }}
->
-            <h2 className="display-7 mg-bottom-medium mg-top-tiny">Spa Timings</h2>
+          <div
+            className=" h-100"
+            style={{
+              padding: "25px",
+              background: "#ecd8c480",
+              border: "none",
+              // borderRadius: "12px",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
+              height: "",
+            }}
+          >
+            <h2 className="display-7 mg-bottom-medium mg-top-tiny">
+              Spa Timings
+            </h2>
 
-            <div className="grid-1-column gap-row-12px picture-description v1" style={{}}>
+            <div
+              className="grid-1-column gap-row-12px picture-description v1"
+              style={{}}
+            >
               {timings.map((time, i) => (
                 <div
                   key={i}
@@ -74,27 +69,24 @@ const VisitAndContact = () => {
 
           {/* RIGHT SIDE - CONTACT */}
           <div
-  className="card"
-  style={{
-    padding: "25px",
-    background: "#ecd8c480",
-        border:"none",
+            className=""
+            style={{
+              padding: "25px",
+              background: "#ecd8c480",
+              border: "none",
 
-    // borderRadius: "12px",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
-    height: "100%",
-  }}
->
-            <h2 className="display-7 mg-bottom-medium mg-top-tiny">Contact Us</h2>
-<div className="picture-description v1">
+              // borderRadius: "12px",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
+              height: "100%",
+            }}
+          >
+            <h2 className="display-7 mg-bottom-medium mg-top-tiny">
+              Contact Us
+            </h2>
+            <div className="picture-description v1">
+              <p style={{ marginBottom: "10px" }}>📞 050 722 5706</p>
 
-            <p style={{ marginBottom: "10px" }}>
-              📞 050 722 5706
-            </p>
-
-            <p style={{ marginBottom: "15px" }}>
-              ✉️ Support@hamamat.com
-            </p>
+              <p style={{ marginBottom: "15px" }}>✉️ Support@hamamat.com</p>
             </div>
 
             {/* GOOGLE MAP */}
@@ -115,7 +107,6 @@ const VisitAndContact = () => {
               ></iframe>
             </div>
           </div>
-
         </div>
       </div>
     </section>

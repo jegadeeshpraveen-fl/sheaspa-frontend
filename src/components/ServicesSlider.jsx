@@ -271,6 +271,7 @@ const ServicesSlider = () => {
           </div>
 
           {/* Arrows */}
+          <div className="">
           <button
             className="slider-button left-v7"
             onClick={prev}
@@ -289,6 +290,7 @@ const ServicesSlider = () => {
           >
             →
           </button>
+          </div>
         </div>
       </div>
     </section>

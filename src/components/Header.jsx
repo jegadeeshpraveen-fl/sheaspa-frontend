@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import logoWhite from '../assets/images/logo-white.svg';
-import logo from '../assets/images/logo.svg';
+import React, { useState, useEffect } from "react";
+import logoWhite from "../assets/images/logo-white.svg";
+import logo from "../assets/images/logo.svg";
 
 const Header = ({ cartCount = 0, onCartOpen }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -8,18 +8,20 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <div className={`header-transparent`}>
-        <nav className={`header-wrapper ${scrolled ? 'scrolled' : ''}`} role="banner">
+        <nav
+          className={`header-wrapper ${scrolled ? "scrolled" : ""}`}
+          role="banner"
+        >
           <div className="container-default">
             <div className="header-container-wrapper">
               {/* Left Nav */}
-             
 
               {/* Logo Center */}
               {/* <div className="logo-wrapper _130px">
@@ -29,7 +31,7 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
     textAlign: "center",
     fontSize: "30px"}}>Sheabutter</p>
                 {/* <a href="#home" className="logo-link"> */}
-                  {/* <img
+              {/* <img
                     src={logoWhite}
                     alt="Sheabutter Museum Wellness Spa Logo"
                     onError={(e) => {
@@ -37,35 +39,39 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
                       e.target.parentElement.innerHTML = '<span style="color:white;font-family:Lora,serif;font-size:1.5rem;font-weight:700;letter-spacing:0.15em">ZEN</span>';
                     }}
                   /> */}
-                {/* </a> 
+              {/* </a> 
               </div> */}
-               <div style={{ textAlign: 'center',  }}>
-        <div style={{
-          fontFamily: 'Lora, serif',  
-          fontSize: '2rem',
-          fontWeight: 700,
-          letterSpacing: '0.3em',
-          color: '#ffffff',
-                    marginTop: '0.9rem',
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontFamily: "Lora, serif",
+                    fontSize: "2rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.3em",
+                    color: "#ffffff",
+                    marginTop: "0.9rem",
 
-          animation: 'pulse 1.2s ease infinite'
-        }}>
-          SHEABUTTER
-        </div>
-        <div style={{
-          fontFamily: 'Inter, sans-serif',
-          fontSize: '0.75rem',
-          letterSpacing: '0.25em',
-          textTransform: 'uppercase',
-          color: '#ffffff',
-          marginTop: '0.9rem'
-        }}>
-          SPA & WELLNESS
-        </div>
-      </div>
+                    animation: "pulse 1.2s ease infinite",
+                  }}
+                >
+                  SHEABUTTER
+                </div>
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.75rem",
+                    letterSpacing: "0.25em",
+                    textTransform: "uppercase",
+                    color: "#ffffff",
+                    marginTop: "0.9rem",
+                  }}
+                >
+                  SPA & WELLNESS
+                </div>
+              </div>
 
               {/* Right Buttons */}
-              <div className="nav-menu-right-side">
+              <div className="nav-menu-right-side hidden md:block">
                 {/* <div className="buttons-row nav-menu-hidden-on-mobile">
                   <a href="#book" className="secondary-button dark-mode">
                     <div>Reserve</div>
@@ -76,13 +82,17 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
                 </div> */}
                 <ul className="list-nav-menu">
                   <li className="link-nav-item">
-                    <a href="#home" className="link light"><div>Home</div></a>
+                    <a href="#home" className="link light">
+                      <div>Home</div>
+                    </a>
                   </li>
                   {/* <li className="link-nav-item">
                     <a href="#about" className="link light"><div>About</div></a>
                   </li> */}
                   <li className="link-nav-item">
-                    <a href="#services" className="link light"><div>Services</div></a>
+                    <a href="#services" className="link light">
+                      <div>Services</div>
+                    </a>
                   </li>
                   {/* <li className="link-nav-item">
                     <a href="#shop" className="link light"><div>Shop</div></a>
@@ -104,21 +114,40 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
       </div>
 
       {/* Mobile Nav */}
-      <div className={`mobile-nav ${mobileOpen ? 'open' : ''}`}>
+      <div className={`mobile-nav ${mobileOpen ? "open" : ""}`}>
         <div className="mobile-nav-header">
           <a href="#home" onClick={() => setMobileOpen(false)}>
-            <img src={logo} alt="Sheabutter Museum Wellness Spa" height="32"
+            <img
+              src={logo}
+              alt="Sheabutter Museum Wellness Spa"
+              height="32"
               onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.parentElement.innerHTML = '<span style="font-family:Lora,serif;font-size:1.5rem;font-weight:700;letter-spacing:0.15em">ZEN</span>';
+                e.target.style.display = "none";
+                e.target.parentElement.innerHTML =
+                  '<span style="font-family:Lora,serif;font-size:1.5rem;font-weight:700;letter-spacing:0.15em">ZEN</span>';
               }}
             />
           </a>
-          <button className="close-btn" onClick={() => setMobileOpen(false)} aria-label="Close menu">✕</button>
+          <button
+            className="close-btn"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
         </div>
         <nav className="mobile-nav-links">
-          {[['#home','Home'],['#about','About'],['#services','Services'],['#book','Book'],['#shop','Shop'],['#contact','Contact']].map(([href,label]) => (
-            <a key={href} href={href} onClick={() => setMobileOpen(false)}>{label}</a>
+          {[
+            ["#home", "Home"],
+            ["#about", "About"],
+            ["#services", "Services"],
+            ["#book", "Book"],
+            ["#shop", "Shop"],
+            ["#contact", "Contact"],
+          ].map(([href, label]) => (
+            <a key={href} href={href} onClick={() => setMobileOpen(false)}>
+              {label}
+            </a>
           ))}
           {/* <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
             <a href="#book" className="secondary-button" onClick={() => setMobileOpen(false)}>Reserve</a>

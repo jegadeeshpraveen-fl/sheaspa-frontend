@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const LoadingScreen = ({ onDone }) => {
   const [hiding, setHiding] = useState(false);
@@ -6,61 +6,64 @@ const LoadingScreen = ({ onDone }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setHiding(true);
-      setTimeout(() => { onDone && onDone(); }, 500);
+      setTimeout(() => {
+        onDone && onDone();
+      }, 500);
     }, 1200);
     return () => clearTimeout(timer);
   }, [onDone]);
 
   return (
     <div
-      className={`loading-page-wrapper bar-animation ${hiding ? 'done' : ''}`}
+      className={`loading-page-wrapper bar-animation ${hiding ? "done" : ""}`}
       style={{
-        position: 'fixed',
+        position: "fixed",
         inset: 0,
-        background: '#f5f0eb',
+        background: "#f5f0eb",
         zIndex: 9999,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        transition: 'opacity 0.5s ease',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        transition: "opacity 0.5s ease",
         opacity: hiding ? 0 : 1,
-        pointerEvents: hiding ? 'none' : 'all',
+        pointerEvents: hiding ? "none" : "all",
       }}
     >
       {/* Logo / brand during loading */}
-      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <div style={{
-          fontFamily: 'Lora, serif',
-          fontSize: '3rem',
-          fontWeight: 700,
-          letterSpacing: '0.3em',
-          color: '#1a1a1a',
-          animation: 'pulse 1.2s ease infinite'
-        }}>
-          SHEABUTTER
-        </div>
-        <div style={{
-          fontFamily: 'Inter, sans-serif',
-          fontSize: '0.75rem',
-          letterSpacing: '0.25em',
-          textTransform: 'uppercase',
-          color: '#8b6f47',
-          marginTop: '0.5rem'
-        }}>
+      <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div className="logo-text">SHEABUTTER</div>
+        <div
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "0.75rem",
+            letterSpacing: "0.25em",
+            textTransform: "uppercase",
+            color: "#8b6f47",
+            marginTop: "0.5rem",
+          }}
+        >
           SPA & WELLNESS
         </div>
       </div>
 
       {/* Loading bar */}
-      <div style={{ width: '200px', height: '1px', background: '#ddd4c6', position: 'relative', overflow: 'hidden' }}>
+      <div
+        style={{
+          width: "200px",
+          height: "1px",
+          background: "#ddd4c6",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             inset: 0,
-            background: '#8b6f47',
-            animation: 'loadBar 1.2s ease forwards',
-            transformOrigin: 'left',
+            background: "#8b6f47",
+            animation: "loadBar 1.2s ease forwards",
+            transformOrigin: "left",
           }}
         ></div>
       </div>
