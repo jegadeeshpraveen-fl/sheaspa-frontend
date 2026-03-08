@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const Hero = () => {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
+  const buttonsRef = useRef(null);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedService, setSelectedService] = useState(null);
@@ -148,7 +149,8 @@ const handleSearch = async () => {
                 flexDirection: "column",
                 alignItems: "center",
                 textAlign: "center",
-                gap: "1.5rem"
+                gap: "1.5rem",
+                // background:"#c4a8828c"
               }}
             >
               <div className="overflow-hidden">
@@ -157,7 +159,7 @@ const handleSearch = async () => {
                   className="display-10 text-light"
                   style={{ transform: "translate3d(0,100%,0)" }}
                 >
-                  Not Just Any Massage
+                Not Just Any Massage
                 </h1>
               </div>
 
@@ -166,39 +168,42 @@ const handleSearch = async () => {
                 className="inner-container _840px center"
                 style={{ opacity: 0 }}
               >
-                <p className="text-neutra-200 display-2">
-              The Sheabutter Museum Wellness Spa is where luxury meets extreme comfort. With an attentive staff ready provide the best service in all of Africa, visitors will embark on a journey filled with tradition, authenticity. ano most importanly - relaxation. Join us and tap into the real African soft life.
-
+                <p className="text-neutra-200 display-2" style={{ marginBottom: "1.5rem" }}>
+               The Sheabutter Museum Wellness Spa is where luxury meets extreme comfort. With an attentive staff ready provide the best service in all of Africa, visitors will embark on a journey filled with tradition, authenticity. ano most importanly - relaxation. Join us and tap into the real African soft life.
                 </p>
               </div>
-
-              {/* SEARCH BAR */}
+               {/* SEARCH BAR */}
               <div className="search-bar">
 
-              <DatePicker
-  selected={selectedDate}
-  onChange={(date) => {
-    setSelectedDate(date);
-    setAvailableSlots([]); // clear old slots
-  }}
-  dateFormat="dd MMM yyyy"
-  className="hero-datepicker"
-/>
-
-                <Select
-                  options={serviceOptions}
-                  placeholder="Search Services..."
-                  value={selectedService}
-                  onChange={setSelectedService}
-                  className="service-select"
+                {/* DATE PICKER */}
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={(date) => setSelectedDate(date)}
+                  dateFormat="dd MMM yyyy"
+                  placeholderText="Select Date"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  className="hero-datepicker"
                 />
 
-                <button className="search-btn" onClick={handleSearch}>
+                {/* AUTOCOMPLETE */}
+              <Select
+  options={serviceOptions}
+  placeholder="Search Services..."
+  value={selectedService}
+  onChange={setSelectedService}
+  className="service-select"
+  classNamePrefix="react-select"
+/>
+                {/* SEARCH BUTTON */}
+   <button className="search-btn" onClick={handleSearch}>
                   Search
                 </button>
               </div>
 
-              {/* LOADING */}
+            
+   {/* LOADING */}
               {loading && <p style={{color:"white"}}>Checking availability...</p>}
 
               {/* AVAILABLE SLOTS */}
@@ -215,13 +220,22 @@ const handleSearch = async () => {
                   ))}
                 </div>
               )}
-
+              {/* <div
+                ref={buttonsRef}
+                className="buttons-row"
+                style={{ opacity: 0, justifyContent: "center" }}
+              >
+                <a href="#services" className="primary-button">
+                  All services
+                </a>
+              </div> */}
             </div>
           </div>
+           
         </div>
       </div>
 
-       {/* BACKGROUND IMAGE */}
+      {/* BACKGROUND IMAGE */}
       <div className="featured-picture-v2">
         <img
           src={heroImage}
@@ -235,9 +249,9 @@ const handleSearch = async () => {
     transform: "translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)"
   }}
 ></div>      </div>
+      
     </section>
   );
 };
 
 export default Hero;
-

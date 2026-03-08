@@ -15,6 +15,7 @@ import CartModal from './components/CartModal';
 import VisitAndContact from "./components/VisitAndContact"
 
 function App() {
+  alert("jega")
   const [loading, setLoading] = useState(true);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems] = useState([]);
