@@ -42,7 +42,7 @@ const VisitAndContact = () => {
             }}
           >
             <h2 className="display-7 mg-bottom-medium mg-top-tiny">
-              Spa Timings
+              Spa Hours
             </h2>
 
             <div

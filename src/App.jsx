@@ -36,7 +36,7 @@ function App() {
         <About />
         {/* <Booking /> */}
         {/* <SpaProducts /> */}
-        <Testimonials />
+        {/* <Testimonials /> */}
         {/* <SocialFollow /> */}
         <VisitAndContact/>
         {/* <BlogSection /> */}

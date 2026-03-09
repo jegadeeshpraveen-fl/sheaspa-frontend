@@ -380,6 +380,7 @@ p {
   gap: 1rem;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: auto;
 }
 
 .buttons-row.left {
@@ -1246,6 +1247,10 @@ p {
   .buttons-row {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .modal-content{
+    margin-top: 0;
   }
 }
 
@@ -41360,7 +41365,7 @@ figcaption {
   }
 
   .display-2 {
-    font-size: var(--core--font-size--displays-mbp--display-2);
+    font-size: 14px;
   }
 
   .display-1 {
@@ -43377,7 +43382,7 @@ figcaption {
   outline: none;
   border-bottom-left-radius: 30px;
   border-top-left-radius: 30px;
-  font-size: 14px;
+  font-size: 18px;
 }
 /* Selected day */
 .react-datepicker__day--selected {
@@ -43639,4 +43644,116 @@ figcaption {
 .slot-chip:hover {
   background: #c4a882;
   color: white;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content, .modal-contents {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  padding: 2.5rem;
+  border-radius: 4px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  margin-top: 125px;
+}
+
+.modal-contents{
+  margin-top: 0 !important;
+}
+
+.modal-overlay.open .modal-content {
+  transform: translateY(0);
+}
+
+.modal-title {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-titles);
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.form-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #c4a882;
+}
+
+.modal-submit-btn {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #c4a882;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.modal-submit-btn:hover {
+  background: #b39771;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
 }

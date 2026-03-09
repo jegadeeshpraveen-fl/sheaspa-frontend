@@ -16,6 +16,13 @@ const Hero = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [availableSlots, setAvailableSlots] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
+  const [customerDetails, setCustomerDetails] = useState({
+    name: "",
+    whatsapp: "",
+    email: "",
+  });
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,59 +46,196 @@ const Hero = () => {
     };
   }, []);
 
+  // const serviceOptions = [
+  //   {
+  //     label: "MASSAGE & SCRUBS",
+  //     options: [
+  //       {
+  //         label: "Shea Butter Museum Experience",
+  //         value: "Shea Butter Museum Experience",
+  //       },
+  //       {
+  //         label: "Make Your Own Shea Butter",
+  //         value: "Make Your Own Shea Butter",
+  //       },
+  //       {
+  //         label: "Kuriya Kuriya Spa Experience",
+  //         value: "Kuriya Kuriya Spa Experience",
+  //       },
+  //       {
+  //         label: "Authentic Dining Experience",
+  //         value: "Authentic Dining Experience",
+  //       },
+  //       {
+  //         label: "Private Group Experience",
+  //         value: "Private Group Experience",
+  //       },
+  //       { label: "Facial Treatment", value: "Facial Treatment" },
+  //       { label: "Herbal Steam Therapy", value: "Herbal Steam Therapy" },
+  //       {
+  //         label: "Foot Ritual with Shea Butter",
+  //         value: "Foot Ritual with Shea Butter",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     label: "WELLNESS CLASSES",
+  //     options: [
+  //       {
+  //         label: "Morning Yoga by the Pool",
+  //         value: "Morning Yoga by the Pool",
+  //       },
+  //       {
+  //         label: "Sunset Yoga on the Terrace",
+  //         value: "Sunset Yoga on the Terrace",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     label: "WELLNESS PACKAGES",
+  //     options: [
+  //       {
+  //         label: "Girls Private Experience",
+  //         value: "Girls Private Experience",
+  //       },
+  //       { label: "Chef Shea", value: "Chef Shea" },
+  //       { label: "Shea Combo", value: "Shea Combo" },
+  //     ],
+  //   },
+  // ];
+
   const serviceOptions = [
     {
-      label: "MASSAGE & SCRUBS",
+      label: "TOURS & EDUCATION",
       options: [
-        { label: "Facial", value: "Facial" },
-        { label: "Foot Spa", value: "Foot Spa" },
-        { label: "Hamamat", value: "Hamamat" },
-        { label: "Hamamat Yellow", value: "Hamamat Yellow" }
-      ]
+        {
+          label: "Shea Butter Museum Experience",
+          value: "Shea Butter Museum Experience",
+        },
+        {
+          label: "Make Your Own Shea Butter",
+          value: "Make Your Own Shea Butter",
+        },
+      ],
+    },
+    {
+      label: "SPA EXPERIENCES",
+      options: [
+        {
+          label: "Kuriya Kuriya Spa Experience",
+          value: "Kuriya Kuriya Spa Experience",
+        },
+        {
+          label: "Private Group Experience",
+          value: "Private Group Experience",
+        },
+        {
+          label: "Facial Treatment",
+          value: "Facial Treatment",
+        },
+        {
+          label: "Herbal Steam Therapy",
+          value: "Herbal Steam Therapy",
+        },
+        {
+          label: "Foot Ritual with Shea Butter",
+          value: "Foot Ritual with Shea Butter",
+        },
+      ],
+    },
+    {
+      label: "DINING EXPERIENCES",
+      options: [
+        {
+          label: "Authentic Dining Experience",
+          value: "Authentic Dining Experience",
+        },
+      ],
     },
     {
       label: "WELLNESS CLASSES",
       options: [
-        { label: "Poolside Yoga", value: "Poolside Yoga" },
-        { label: "Kuriya", value: "Kuriya" }
-      ]
+        {
+          label: "Morning Yoga by the Pool",
+          value: "Morning Yoga by the Pool",
+        },
+        {
+          label: "Sunset Yoga on the Terrace",
+          value: "Sunset Yoga on the Terrace",
+        },
+      ],
     },
     {
       label: "WELLNESS PACKAGES",
       options: [
-        { label: "Girls Private Experience", value: "Girls Private Experience" },
-        { label: "Chef Shea", value: "Chef Shea" },
-        { label: "Shea Combo", value: "Shea Combo" }
-      ]
-    }
+        {
+          label: "Girls Private Experience",
+          value: "Girls Private Experience",
+        },
+        {
+          label: "Chef Shea",
+          value: "Chef Shea",
+        },
+        {
+          label: "Shea Combo",
+          value: "Shea Combo",
+        },
+      ],
+    },
   ];
 
   // SEARCH AVAILABLE SLOTS
-const handleSearch = async () => {
-  if (!selectedDate) return;
-  if (!selectedService?.value) return;
+  const handleSearch = async () => {
+    if (!selectedDate) return;
+    if (!selectedService?.value) return;
 
-  const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
+    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
 
-  setLoading(true);
+    setLoading(true);
 
-  const res = await fetch("https://sheaspa-backend.onrender.com/get-available-slots", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
- 
-    body: JSON.stringify({
-  date: formattedDate,
-  service: selectedService?.value
-})
-  });
+    const res = await fetch(
+      "https://sheaspa-backend.onrender.com/get-available-slots",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-  const data = await res.json();
+        body: JSON.stringify({
+          date: formattedDate,
+          service: selectedService?.value,
+        }),
+      },
+    );
 
-  setAvailableSlots(data.availableSlots || []);
-  setLoading(false);
-};
+    const data = await res.json();
+
+    setAvailableSlots(data.availableSlots || []);
+    setLoading(false);
+  };
+
+  const handleSearchInitiate = () => {
+    if (!selectedDate) {
+      toast.error("Please select a date");
+      return;
+    }
+    if (!selectedService?.value) {
+      toast.error("Please select a service");
+      return;
+    }
+
+    handleSearch();
+  };
+
+  const handleCustomerSubmit = (e) => {
+    e.preventDefault();
+    if (!customerDetails.name || !customerDetails.whatsapp) {
+      toast.error("Name and WhatsApp number are required");
+      return;
+    }
+    setIsCustomerModalOpen(false);
+    handleSlotClick(selectedSlot);
+  };
 
   // CONVERT AM PM TO 24 HOUR
   const convertTo24Hour = (time) => {
@@ -111,79 +255,101 @@ const handleSearch = async () => {
 
   // CREATE BOOKING
   const handleSlotClick = (slot) => {
-    console.log(selectedDate,"selectedDateselectedDate")
-  toast(
-    ({ closeToast }) => (
-      <div>
-        <p>Are you sure you want to book <b>{slot}</b>?</p>
+    if (!customerDetails.name || !customerDetails.whatsapp) {
+      setSelectedSlot(slot);
+      setIsCustomerModalOpen(true);
+    } else {
+      toast(
+        ({ closeToast }) => (
+          <div>
+            <p>
+              Are you sure you want to book <b>{slot}</b>?
+            </p>
 
-        <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-          <button
-            style={{ padding: "6px 12px", background: "#28a745", color: "white", border: "none" }}
-            onClick={() => {
-              closeToast();
-              confirmBooking(slot);
-            }}
-          >
-            Yes
-          </button>
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+              <button
+                style={{
+                  padding: "6px 12px",
+                  background: "#28a745",
+                  color: "white",
+                  border: "none",
+                }}
+                onClick={() => {
+                  closeToast();
+                  confirmBooking(slot);
+                }}
+              >
+                Yes
+              </button>
 
-          <button
-            style={{ padding: "6px 12px", background: "#ccc", border: "none" }}
-            onClick={closeToast}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    ),
-    { autoClose: false , containerId: "slotConfirm"},
-  );
+              <button
+                style={{
+                  padding: "6px 12px",
+                  background: "#ccc",
+                  border: "none",
+                }}
+                onClick={closeToast}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ),
+        { autoClose: false, containerId: "slotConfirm" },
+      );
+    }
+  };
+  const confirmBooking = async (slot) => {
+    const startTime = convertTo24Hour(slot);
 
-};
-const confirmBooking = async (slot) => {
+    const endHour = parseInt(startTime.split(":")[0]) + 1;
+    const endTime = `${endHour.toString().padStart(2, "0")}:00`;
 
-  const startTime = convertTo24Hour(slot);
+    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
 
-  const endHour = parseInt(startTime.split(":")[0]) + 1;
-  const endTime = `${endHour.toString().padStart(2, "0")}:00`;
+    const response = await fetch(
+      "https://sheaspa-backend.onrender.com/create-booking",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: customerDetails.name,
+          service: selectedService?.value || "Massage",
+          whatsapp: customerDetails.whatsapp,
+          email: customerDetails.email || "",
+          date: formattedDate,
+          startTime,
+          endTime,
+        }),
+      },
+    );
 
-  const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
-
-  const response = await fetch("https://sheaspa-backend.onrender.com/create-booking", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: "Praveen",
-      service: selectedService?.value || "Massage",
-      whatsapp: "+98109819282929",
-      email: "ajajdndj@gamail.com",
-      date: formattedDate,
-      startTime,
-      endTime
-    })
-  });
-
-  const result = await response.json();
-  if (result.success) {
-    toast.success("Booking Confirmed!");
-    handleSearch();
-  } else {
-    toast.error("Booking Failed");
-  }
-};
+    const result = await response.json();
+    if (result.success) {
+      toast.success("Booking Confirmed!");
+      setSelectedSlot(null);
+      setCustomerDetails({
+        name: "",
+        whatsapp: "",
+        email: "",
+      });
+      handleSearch();
+    } else {
+      toast.error("Booking Failed");
+    }
+  };
   return (
     <section id="home" className="section hero bg-image-full">
       <ToastContainer
-      position="top-center"
-      autoClose={3000}
-      hideProgressBar={false}
-      newestOnTop
-      closeOnClick
-      pauseOnHover
-    />
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+      />
       <div className="z-index-1">
         <div className="container-default">
           <div className="inner-container _1070px center">
@@ -203,7 +369,7 @@ const confirmBooking = async (slot) => {
                   className="display-10 text-light"
                   style={{ transform: "translate3d(0,100%,0)" }}
                 >
-                Not Just Any Massage
+                  Not Just Any Massage
                 </h1>
               </div>
 
@@ -212,13 +378,39 @@ const confirmBooking = async (slot) => {
                 className="inner-container _840px center"
                 style={{ opacity: 0 }}
               >
-                <p className="text-neutra-200 display-2" style={{ marginBottom: "1.5rem" }}>
-               The Sheabutter Museum Wellness Spa is where luxury meets extreme comfort. With an attentive staff ready provide the best service in all of Africa, visitors will embark on a journey filled with tradition, authenticity. ano most importanly - relaxation. Join us and tap into the real African soft life.
+                <p
+                  className="text-neutra-200 display-2"
+                  style={{ marginBottom: "1.5rem" }}
+                >
+                  The Sheabutter Museum Wellness Spa is where luxury meets
+                  extreme comfort. With an attentive staff ready provide the
+                  best service in all of Africa, visitors will embark on a
+                  journey filled with tradition, authenticity. ano most
+                  importanly - relaxation. Join us and tap into the real African
+                  soft life.
                 </p>
               </div>
-               {/* SEARCH BAR */}
-              <div className="search-bar">
 
+              {/* BOOK TITLE */}
+              <div
+                className="overflow-hidden"
+                style={{ marginBottom: "-0.5rem" }}
+              >
+                <h2
+                  className="display-8 text-light"
+                  style={{
+                    textTransform: "uppercase",
+                    letterSpacing: "6px",
+                    fontWeight: "500",
+                    margin: 0,
+                  }}
+                >
+                  BOOK
+                </h2>
+              </div>
+
+              {/* SEARCH BAR */}
+              <div className="search-bar">
                 {/* DATE PICKER */}
                 <DatePicker
                   selected={selectedDate}
@@ -229,34 +421,35 @@ const confirmBooking = async (slot) => {
                   showYearDropdown
                   dropdownMode="select"
                   className="hero-datepicker"
-                   minDate={new Date()}
+                  minDate={new Date()}
                 />
 
                 {/* AUTOCOMPLETE */}
-              <Select
-  options={serviceOptions}
-  placeholder="Search Services..."
-  value={selectedService}
-  onChange={setSelectedService}
-  className="service-select"
-  classNamePrefix="react-select"
-/>
+                <Select
+                  options={serviceOptions}
+                  placeholder="Search Services..."
+                  value={selectedService}
+                  onChange={setSelectedService}
+                  className="service-select"
+                  classNamePrefix="react-select"
+                />
                 {/* SEARCH BUTTON */}
-   <button className="search-btn" onClick={handleSearch}>
+                <button className="search-btn" onClick={handleSearchInitiate}>
                   Search
                 </button>
               </div>
 
-            
-   {/* LOADING */}
-              {loading && <p style={{color:"white"}}>Checking availability...</p>}
- <ToastContainer
-  containerId="slotConfirm"
-  position="top-center"
-  autoClose={false}
-  newestOnTop
-  style={{ top: "40%" }}
-/> 
+              {/* LOADING */}
+              {loading && (
+                <p style={{ color: "white" }}>Checking availability...</p>
+              )}
+              <ToastContainer
+                containerId="slotConfirm"
+                position="top-center"
+                autoClose={false}
+                newestOnTop
+                style={{ top: "40%" }}
+              />
               {/* AVAILABLE SLOTS */}
               {availableSlots.length > 0 && (
                 <div className="slots-container">
@@ -282,7 +475,6 @@ const confirmBooking = async (slot) => {
               </div> */}
             </div>
           </div>
-           
         </div>
       </div>
 
@@ -293,14 +485,83 @@ const confirmBooking = async (slot) => {
           alt="Luxury Spa Treatments"
           className="image fit-cover _w-h-100"
         />
- <div
-  className="image-overlay"
-  style={{
-    display: "block",
-    transform: "translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)"
-  }}
-></div>      </div>
-      
+        <div
+          className="image-overlay"
+          style={{
+            display: "block",
+            transform:
+              "translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
+          }}
+        ></div>{" "}
+      </div>
+
+      {/* CUSTOMER DETAILS MODAL */}
+      <div
+        className={`modal-overlay ${isCustomerModalOpen ? "open" : ""}`}
+        onClick={() => setIsCustomerModalOpen(false)}
+      >
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <button
+            className="modal-close-btn"
+            onClick={() => setIsCustomerModalOpen(false)}
+          >
+            ✕
+          </button>
+          <h2 className="modal-title">Enter Your Details</h2>
+          <form className="modal-form" onSubmit={handleCustomerSubmit}>
+            <div className="form-group">
+              <label>Full Name *</label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="Ex: John Doe"
+                required
+                value={customerDetails.name}
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    name: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label>WhatsApp Number *</label>
+              <input
+                type="tel"
+                className="form-input"
+                placeholder="Ex: +1234567890"
+                required
+                value={customerDetails.whatsapp}
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    whatsapp: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label>Email Address (Optional)</label>
+              <input
+                type="email"
+                className="form-input"
+                placeholder="Ex: john@example.com"
+                value={customerDetails.email}
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    email: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <button type="submit" className="modal-submit-btn">
+              Confirm Booking
+            </button>
+          </form>
+        </div>
+      </div>
     </section>
   );
 };
