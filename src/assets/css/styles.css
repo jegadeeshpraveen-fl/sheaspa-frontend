@@ -1249,7 +1249,7 @@ p {
     align-items: flex-start;
   }
 
-  .modal-content{
+  .modal-content {
     margin-top: 0;
   }
 }
@@ -7522,7 +7522,7 @@ figcaption {
 }
 
 .secondary-button:hover {
-  color: var(--components--buttons-secondary--text--text-light-mode);
+  color: white;
   transform: scale3d(0.94, 0.94, 1.01);
 }
 
@@ -35519,7 +35519,7 @@ figcaption {
 }
 
 .secondary-button:hover {
-  color: var(--components--buttons-secondary--text--text-light-mode);
+  color: white;
   transform: scale3d(0.94, 0.94, 1.01);
 }
 
@@ -37233,7 +37233,7 @@ figcaption {
 
 .header-container-wrapper {
   grid-column-gap: var(--globals--gaps--gap-medium);
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   display: flex;
 }
@@ -43666,7 +43666,8 @@ figcaption {
   visibility: visible;
 }
 
-.modal-content, .modal-contents {
+.modal-content,
+.modal-contents {
   background: #fff;
   width: 90%;
   max-width: 500px;
@@ -43679,7 +43680,7 @@ figcaption {
   margin-top: 125px;
 }
 
-.modal-contents{
+.modal-contents {
   margin-top: 0 !important;
 }
 

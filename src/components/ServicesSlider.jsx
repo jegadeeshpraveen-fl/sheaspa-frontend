@@ -19,15 +19,20 @@ import "react-toastify/dist/ReactToastify.css";
 const services = [
   {
     id: 1,
-    name: "SHEA BUTTER MUSEUM EXPERIENCE",
+    name: "KOREA KOREA SPA EXPERIENCE",
     description: [
-      "A guided tour through the Hamamat Shea Butter Museum where guests discover the history of African beauty traditions and the cultural importance of shea butter.",
-      "Guests will also explore our famous Shea Butter Wall featuring butter from across Africa.",
+      "Our signature African wellness ritual.",
+      "This experience begins with a full-body African scrub using natural ingredients, followed by the Kuriya Kuriya Massage.",
+      "A relaxing massage using warm shea butter prepared by our village women.",
     ],
-    features: [],
-    image: sheaButterMuseum,
-    categoryLabel: "A/1 shea experience",
-    location: "102 Kofi Annan St, Airport Residential, Accra",
+    listLabel: "Includes:",
+    features: [
+      "African Body Scrub",
+      "Warm Shea Butter Massage",
+      "Herbal Relaxation Ritual",
+    ],
+    image: kuriya,
+    categoryLabel: "A/3 spa experience",
   },
   {
     id: 2,
@@ -45,20 +50,15 @@ const services = [
   },
   {
     id: 3,
-    name: "KURIYA KURIYA SPA EXPERIENCE",
+    name: "SHEA BUTTER MUSEUM EXPERIENCE",
     description: [
-      "Our signature African wellness ritual.",
-      "This experience begins with a full-body African scrub using natural ingredients, followed by the Kuriya Kuriya Massage.",
-      "A relaxing massage using warm shea butter prepared by our village women.",
+      "A guided tour through the Hamamat Shea Butter Museum where guests discover the history of African beauty traditions and the cultural importance of shea butter.",
+      "Guests will also explore our famous Shea Butter Wall featuring butter from across Africa.",
     ],
-    listLabel: "Includes:",
-    features: [
-      "African Body Scrub",
-      "Warm Shea Butter Massage",
-      "Herbal Relaxation Ritual",
-    ],
-    image: kuriya,
-    categoryLabel: "A/3 spa experience",
+    features: [],
+    image: sheaButterMuseum,
+    categoryLabel: "A/1 shea experience",
+    location: "102 Kofi Annan St, Airport Residential, Accra",
   },
   {
     id: 4,
@@ -260,48 +260,7 @@ const ServicesSlider = () => {
 
   const handleSlotClick = (slot) => {
     setSelectedSlot(slot);
-    if (!customerDetails.name || !customerDetails.whatsapp) {
-      setIsCustomerDetailsStep(true);
-    } else {
-      toast(
-        ({ closeToast }) => (
-          <div>
-            <p className="mg-bottom-small">
-              Are you sure you want to book <b>{slot}</b>?
-            </p>
-            <div style={{ display: "flex", gap: "10px" }}>
-              <button
-                className="primary-button"
-                style={{
-                  padding: "6px 12px",
-                  background: "#28a745",
-                  fontSize: "0.875rem",
-                }}
-                onClick={() => {
-                  closeToast();
-                  confirmBooking(slot);
-                }}
-              >
-                Yes
-              </button>
-              <button
-                className="secondary-button"
-                style={{
-                  padding: "6px 12px",
-                  background: "#ccc",
-                  fontSize: "0.875rem",
-                  color: "#333",
-                }}
-                onClick={closeToast}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        ),
-        { autoClose: false },
-      );
-    }
+    setIsCustomerDetailsStep(true);
   };
 
   const handleCustomerSubmit = (e) => {
@@ -353,6 +312,10 @@ const ServicesSlider = () => {
   };
 
   const confirmBooking = async (slot) => {
+    if (!customerDetails.name || !customerDetails.whatsapp) {
+      toast.error("Name and WhatsApp are required");
+      return;
+    }
     const convertTo24Hour = (time) => {
       const [timePart, modifier] = time.split(" ");
       let [hours, minutes] = timePart.split(":");
@@ -455,7 +418,7 @@ const ServicesSlider = () => {
                   className="slide-item mg-right-extra-large"
                   style={{ width: 240 }}
                 >
-                  <div className="grid-1-column gap-row-medium h-full">
+                  <div className="grid-1-column gap-row-medium">
                     <div className="picture-mask _11">
                       <img
                         src={service.image}
@@ -466,25 +429,21 @@ const ServicesSlider = () => {
                     </div>
 
                     <div className="service-content service-card">
-                      {/* Title + Price */}
                       <div className="flex-horizontal space-between align-center">
                         <h3 className="heading display-4 service-title">
                           {service.name}
                         </h3>
-
                         <div className="service-price mg-top-small mg-bottom-small">
                           $325.99
                         </div>
                       </div>
 
-                      {/* Description */}
                       <div className="service-text">
                         {service.description.map((desc, index) => (
                           <p className="mg-top-extra-small" key={index}>
                             {desc}
                           </p>
                         ))}
-
                         <p className="mg-top-extra-small">{service.location}</p>
 
                         {service.features.length > 0 && (
@@ -502,7 +461,6 @@ const ServicesSlider = () => {
                         )}
                       </div>
 
-                      {/* Button */}
                       <div className="buttons-row">
                         <button
                           className="primary-button"
@@ -606,14 +564,21 @@ const ServicesSlider = () => {
                     </div>
                   </div>
                 )}
-                {availableSlots?.length === 0 && !loading && (
-                  <p className="text-center mg-top-small">
-                    No slots available for this date.
-                  </p>
-                )}
               </div>
             ) : (
-              <form className="modal-form" onSubmit={handleCustomerSubmit}>
+              <form
+                className="modal-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  confirmBooking(selectedSlot);
+                  setIsBookingModalOpen(false);
+                  setIsCustomerDetailsStep(false);
+                  setSelectedSlot(null);
+                  setSelectedDate(new Date());
+                  setAvailableSlots([]);
+                  setCustomerDetails({ name: "", whatsapp: "", email: "" });
+                }}
+              >
                 <p className="text-center mg-bottom-small">
                   Confirming booking for <b>{selectedSlot}</b>
                 </p>

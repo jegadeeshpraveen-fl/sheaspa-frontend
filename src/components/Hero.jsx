@@ -122,8 +122,8 @@ const Hero = () => {
       label: "SPA EXPERIENCES",
       options: [
         {
-          label: "Kuriya Kuriya Spa Experience",
-          value: "Kuriya Kuriya Spa Experience",
+          label: "Korea Korea Spa Experience",
+          value: "Korea Korea Spa Experience",
         },
         {
           label: "Private Group Experience",
@@ -255,50 +255,10 @@ const Hero = () => {
 
   // CREATE BOOKING
   const handleSlotClick = (slot) => {
-    if (!customerDetails.name || !customerDetails.whatsapp) {
-      setSelectedSlot(slot);
-      setIsCustomerModalOpen(true);
-    } else {
-      toast(
-        ({ closeToast }) => (
-          <div>
-            <p>
-              Are you sure you want to book <b>{slot}</b>?
-            </p>
-
-            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-              <button
-                style={{
-                  padding: "6px 12px",
-                  background: "#28a745",
-                  color: "white",
-                  border: "none",
-                }}
-                onClick={() => {
-                  closeToast();
-                  confirmBooking(slot);
-                }}
-              >
-                Yes
-              </button>
-
-              <button
-                style={{
-                  padding: "6px 12px",
-                  background: "#ccc",
-                  border: "none",
-                }}
-                onClick={closeToast}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        ),
-        { autoClose: false, containerId: "slotConfirm" },
-      );
-    }
+    setSelectedSlot(slot);
+    setIsCustomerModalOpen(true);
   };
+
   const confirmBooking = async (slot) => {
     const startTime = convertTo24Hour(slot);
 
@@ -329,13 +289,6 @@ const Hero = () => {
     const result = await response.json();
     if (result.success) {
       toast.success("Booking Confirmed!");
-      setSelectedSlot(null);
-      setCustomerDetails({
-        name: "",
-        whatsapp: "",
-        email: "",
-      });
-      handleSearch();
     } else {
       toast.error("Booking Failed");
     }
@@ -508,7 +461,20 @@ const Hero = () => {
             ✕
           </button>
           <h2 className="modal-title">Enter Your Details</h2>
-          <form className="modal-form" onSubmit={handleCustomerSubmit}>
+          <form
+            className="modal-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              confirmBooking(selectedSlot);
+              setIsCustomerModalOpen(false);
+              setAvailableSlots([]);
+              setCustomerDetails({
+                name: "",
+                whatsapp: "",
+                email: "",
+              });
+            }}
+          >
             <div className="form-group">
               <label>Full Name *</label>
               <input
