@@ -67,7 +67,7 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
                     marginTop: "0.9rem",
                   }}
                 >
-                  SHEABUTTER SPA INSTITUTE
+                  SHEA BUTTER SPA INSTITUTE
                 </div>
               </div>
 

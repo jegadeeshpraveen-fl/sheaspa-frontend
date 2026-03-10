@@ -19,7 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 const services = [
   {
     id: 1,
-    name: "KOREA KOREA SPA EXPERIENCE",
+    name: "Korea Korea Spa Experience",
     description: [
       "Our signature African wellness ritual.",
       "This experience begins with a full-body African scrub using natural ingredients, followed by the Kuriya Kuriya Massage.",
@@ -36,7 +36,7 @@ const services = [
   },
   {
     id: 2,
-    name: "MAKE YOUR OWN SHEA BUTTER",
+    name: "Make Your Own Shea Butter",
     description: [
       "Guests are invited to create their own personalized shea butter blend using fresh village shea butter and natural African ingredients.",
       "Each guest leaves with their own custom shea butter creation.",
@@ -50,7 +50,7 @@ const services = [
   },
   {
     id: 3,
-    name: "SHEA BUTTER MUSEUM EXPERIENCE",
+    name: "Shea Butter Museum Experience",
     description: [
       "A guided tour through the Hamamat Shea Butter Museum where guests discover the history of African beauty traditions and the cultural importance of shea butter.",
       "Guests will also explore our famous Shea Butter Wall featuring butter from across Africa.",
@@ -62,7 +62,7 @@ const services = [
   },
   {
     id: 4,
-    name: "AUTHENTIC DINING EXPERIENCE",
+    name: "Authentic Dining Experience",
     description: [
       "Guests enjoy authentic African cuisine prepared by our private chef using fresh traditional ingredients.",
       "A refined village dining experience celebrating African flavors and hospitality.",
@@ -73,7 +73,7 @@ const services = [
   },
   {
     id: 5,
-    name: "PRIVATE GROUP EXPERIENCE",
+    name: "Private Group Experience",
     description: [
       "Perfect for large groups visiting Ghana as the experience package is customizable.",
     ],
@@ -88,7 +88,7 @@ const services = [
   },
   {
     id: 6,
-    name: "FACIAL TREATMENT",
+    name: "Facial Treatment",
     description: [
       "This experience begins with a gentle cleanse and exfoliation using natural African ingredients.",
       "Followed by a restorative facial massage with warm shea butter prepared by our village women.",
@@ -103,7 +103,7 @@ const services = [
   },
   {
     id: 7,
-    name: "HERBAL STEAM THERAPY",
+    name: "Herbal Steam Therapy",
     description: [
       "A calming herbal steam bath infused with natural African botanical herbs.",
       "The warm steam opens pores, relaxes the body, and promotes purification.",
@@ -118,7 +118,7 @@ const services = [
   },
   {
     id: 8,
-    name: "FOOT RITUAL WITH SHEA BUTTER",
+    name: "Foot Ritual With Shea Butter",
     description: [
       "A warm herbal foot soak followed by a gentle exfoliation using natural African ingredients.",
       "Finished with a soothing shea butter foot massage.",
@@ -134,7 +134,7 @@ const services = [
   },
   {
     id: 9,
-    name: "MORNING YOGA BY THE POOL",
+    name: "Morning Yoga By The Pool",
     description: [
       "Begin the day with a gentle yoga session beside the pool.",
       "Guided breathing and flowing movements help relax the body and mind.",
@@ -150,7 +150,7 @@ const services = [
   },
   {
     id: 10,
-    name: "SUNSET YOGA ON THE TERRACE",
+    name: "Sunset Yoga On The Terrace",
     description: [
       "End the day with a peaceful yoga session on the terrace at sunset.",
       "Golden light fills the sky while gentle stretching and breathing release tension.",

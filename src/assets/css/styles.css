@@ -82,7 +82,6 @@ h4,
 h5,
 h6 {
   font-family: var(--font-primary);
-  text-transform: uppercase;
   letter-spacing: 4px;
 }
 
@@ -34062,7 +34061,7 @@ figcaption {
 }
 
 .display-4 {
-  font-size: var(--core--font-size--displays--display-4);
+  font-size: var(--core--font-size--displays--display-3);
   line-height: var(--core--line-height--regular);
 }
 
@@ -43608,7 +43607,7 @@ figcaption {
 .service-text p,
 .service-text li {
   font-family: inherit;
-  font-size: inherit;
+  font-size: 15px;
 }
 .service-card {
   display: flex;
