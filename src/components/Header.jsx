@@ -72,34 +72,20 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
               </div>
 
               {/* Right Buttons */}
-              <div className="nav-menu-right-side hidden md:block">
-                {/* <div className="buttons-row nav-menu-hidden-on-mobile">
-                  <a href="#book" className="secondary-button dark-mode">
-                    <div>Reserve</div>
-                  </a>
-                  <a href="#contact" className="primary-button">
-                    <div>Get in touch</div>
-                  </a>
-                </div> */}
+              <div className="nav-menu-right-side">
                 <ul className="list-nav-menu">
                   <li className="link-nav-item">
                     <a href="#home" className="link light">
                       <div>Home</div>
                     </a>
                   </li>
-                  {/* <li className="link-nav-item">
-                    <a href="#about" className="link light"><div>About</div></a>
-                  </li> */}
                   <li className="link-nav-item">
                     <a href="#services" className="link light">
                       <div>Services</div>
                     </a>
                   </li>
-                  {/* <li className="link-nav-item">
-                    <a href="#shop" className="link light"><div>Shop</div></a>
-                  </li> */}
                 </ul>
-                {/* <button
+                <button
                   className="hamburger-menu"
                   onClick={() => setMobileOpen(true)}
                   aria-label="Open menu"
@@ -107,7 +93,7 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
                   <div className="hamburger-menu-line top"></div>
                   <div className="hamburger-menu-line middle"></div>
                   <div className="hamburger-menu-line bottom"></div>
-                </button> */}
+                </button>
               </div>
             </div>
           </div>
@@ -115,20 +101,11 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
       </div>
 
       {/* Mobile Nav */}
-      <div className={`mobile-nav ${mobileOpen ? "open" : ""}`}>
+      <div
+        className={`mobile-nav ${mobileOpen ? "open" : ""}`}
+        style={{ fontFamily: "'Josefin Sans', sans-serif" }}
+      >
         <div className="mobile-nav-header">
-          <a href="#home" onClick={() => setMobileOpen(false)}>
-            <img
-              src={logo}
-              alt="Sheabutter Museum Wellness Spa"
-              height="32"
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.parentElement.innerHTML =
-                  '<span style="font-family:Lora,serif;font-size:1.5rem;font-weight:700;letter-spacing:0.15em">ZEN</span>';
-              }}
-            />
-          </a>
           <button
             className="close-btn"
             onClick={() => setMobileOpen(false)}
@@ -140,20 +117,23 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
         <nav className="mobile-nav-links">
           {[
             ["#home", "Home"],
-            ["#about", "About"],
             ["#services", "Services"],
-            ["#book", "Book"],
-            ["#shop", "Shop"],
-            ["#contact", "Contact"],
           ].map(([href, label]) => (
-            <a key={href} href={href} onClick={() => setMobileOpen(false)}>
+            <a
+              key={href}
+              href={href}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "2px",
+                color: "#1a1a1a",
+              }}
+            >
               {label}
             </a>
           ))}
-          {/* <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-            <a href="#book" className="secondary-button" onClick={() => setMobileOpen(false)}>Reserve</a>
-            <a href="#contact" className="primary-button" onClick={() => setMobileOpen(false)}>Get in touch</a>
-          </div> */}
         </nav>
       </div>
     </>
