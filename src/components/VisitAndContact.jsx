@@ -41,9 +41,7 @@ const VisitAndContact = () => {
               height: "",
             }}
           >
-            <h2 className="display-7 mg-bottom-medium mg-top-tiny">
-              Spa Hours
-            </h2>
+            <h2 className="display-7 mg-bottom-medium mg-top-tiny">HOURS</h2>
 
             <div
               className="grid-1-column gap-row-12px picture-description v1"
@@ -80,13 +78,12 @@ const VisitAndContact = () => {
               height: "100%",
             }}
           >
-            <h2 className="display-7 mg-bottom-medium mg-top-tiny">
-              Contact Us
-            </h2>
+            <h2 className="display-7 mg-bottom-medium mg-top-tiny">LOCATION</h2>
             <div className="picture-description v1">
-              <p style={{ marginBottom: "10px" }}>📞 050 722 5706</p>
-
-              <p style={{ marginBottom: "15px" }}>✉️ Support@hamamat.com</p>
+              <p style={{ marginBottom: "10px" }}>
+                📍 123 Wellness Street, Spa City
+              </p>
+              <p style={{ marginBottom: "15px" }}>📞 +91 9876543210</p>
             </div>
 
             {/* GOOGLE MAP */}

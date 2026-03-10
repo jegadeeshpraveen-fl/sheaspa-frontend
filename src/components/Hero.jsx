@@ -316,7 +316,7 @@ const Hero = () => {
                 // background:"#c4a8828c"
               }}
             >
-              <div className="overflow-hidden">
+              {/* <div className="overflow-hidden">
                 <h1
                   ref={titleRef}
                   className="display-10 text-light"
@@ -342,7 +342,7 @@ const Hero = () => {
                   importanly - relaxation. Join us and tap into the real African
                   soft life.
                 </p>
-              </div>
+              </div> */}
 
               {/* BOOK TITLE */}
               <div
@@ -354,17 +354,29 @@ const Hero = () => {
                   style={{
                     textTransform: "uppercase",
                     letterSpacing: "6px",
-                    fontWeight: "500",
+                    fontWeight: "700",
                     margin: 0,
+                    marginBottom: "2rem",
                   }}
                 >
-                  BOOK
+                  BOOK THE EXPERIENCE
                 </h2>
               </div>
 
               {/* SEARCH BAR */}
               <div className="search-bar">
                 {/* DATE PICKER */}
+
+                {/* AUTOCOMPLETE */}
+                <Select
+                  options={serviceOptions}
+                  placeholder="Search Services..."
+                  value={selectedService}
+                  onChange={setSelectedService}
+                  className="service-select"
+                  classNamePrefix="react-select"
+                />
+
                 <DatePicker
                   selected={selectedDate}
                   onChange={(date) => setSelectedDate(date)}
@@ -375,16 +387,6 @@ const Hero = () => {
                   dropdownMode="select"
                   className="hero-datepicker"
                   minDate={new Date()}
-                />
-
-                {/* AUTOCOMPLETE */}
-                <Select
-                  options={serviceOptions}
-                  placeholder="Search Services..."
-                  value={selectedService}
-                  onChange={setSelectedService}
-                  className="service-select"
-                  classNamePrefix="react-select"
                 />
                 {/* SEARCH BUTTON */}
                 <button className="search-btn" onClick={handleSearchInitiate}>

@@ -44,7 +44,7 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
               <div style={{ textAlign: "center" }}>
                 <div
                   style={{
-                    fontFamily: "Lora, serif",
+                    fontFamily: "'Josefin Sans', sans-serif",
                     fontSize: "2rem",
                     fontWeight: 700,
                     letterSpacing: "0.3em",
@@ -54,19 +54,20 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
                     animation: "pulse 1.2s ease infinite",
                   }}
                 >
-                  SHEABUTTER
+                  HAMAMAT
                 </div>
                 <div
                   style={{
-                    fontFamily: "Inter, sans-serif",
+                    fontFamily: "'Josefin Sans', sans-serif",
                     fontSize: "0.75rem",
                     letterSpacing: "0.25em",
                     textTransform: "uppercase",
                     color: "#ffffff",
+                    fontWeight: 700,
                     marginTop: "0.9rem",
                   }}
                 >
-                  SPA & WELLNESS
+                  SHEABUTTER SPA INSTITUTE
                 </div>
               </div>
 

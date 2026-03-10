@@ -377,7 +377,7 @@ const ServicesSlider = () => {
                 ref={titleRef}
                 className={`display-8 reveal-up ${visible ? "visible" : ""}`}
               >
-                Our Top Services
+                OUR TOP SERVICES
               </h2>
             </div>
             {/* <div className={`buttons-row reveal-fade ${visible ? 'visible' : ''}`}>
@@ -444,7 +444,9 @@ const ServicesSlider = () => {
                             {desc}
                           </p>
                         ))}
-                        <p className="mg-top-extra-small">{service.location}</p>
+                        <p className="mg-top-extra-small">
+                          📍 102 Kofi Annan St, Airport West Residential
+                        </p>
 
                         {service.features.length > 0 && (
                           <>
