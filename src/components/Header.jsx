@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logoWhite from "../assets/images/logo-white.svg";
 import logo from "../assets/images/logo.svg";
+import hamamatLogo from "../assets/images/sheabutterlogo.png"
 
 const Header = ({ cartCount = 0, onCartOpen }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,20 +55,7 @@ const Header = ({ cartCount = 0, onCartOpen }) => {
                     animation: "pulse 1.2s ease infinite",
                   }}
                 >
-                  HAMAMAT
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Josefin Sans', sans-serif",
-                    fontSize: "0.75rem",
-                    letterSpacing: "0.25em",
-                    textTransform: "uppercase",
-                    color: "#ffffff",
-                    fontWeight: 700,
-                    marginTop: "0.9rem",
-                  }}
-                >
-                  SHEA BUTTER SPA INSTITUTE
+                  <img style={{ width: 250 }} src={hamamatLogo} />
                 </div>
               </div>
 

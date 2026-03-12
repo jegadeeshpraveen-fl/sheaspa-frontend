@@ -497,7 +497,11 @@ p {
   aspect-ratio: 1;
 }
 .picture-mask._11 {
-  aspect-ratio: 7/8;
+  aspect-ratio: 8/9;
+}
+.picture-mask._11.mobile-class{
+    aspect-ratio: 4/3;
+
 }
 .picture-mask._12 {
   aspect-ratio: 4/3;

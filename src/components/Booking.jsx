@@ -6,8 +6,8 @@ import checkIcon from '../assets/images/check-icon.svg';
 
 const CheckIcon = () => (
   <svg className="check-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="10" cy="10" r="9" stroke="#8b6f47" strokeWidth="1.5"/>
-    <path d="M6 10l3 3 5-5" stroke="#8b6f47" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="10" cy="10" r="9" stroke="#8b6f47" strokeWidth="1.5" />
+    <path d="M6 10l3 3 5-5" stroke="#8b6f47" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 

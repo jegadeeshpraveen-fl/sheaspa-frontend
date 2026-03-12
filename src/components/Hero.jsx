@@ -3,16 +3,15 @@ import heroImage from "../assets/images/women banner.jpg";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Hero = () => {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
-  const buttonsRef = useRef(null);
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Accra" }))
+  );
   const [selectedService, setSelectedService] = useState(null);
   const [availableSlots, setAvailableSlots] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,253 +45,144 @@ const Hero = () => {
     };
   }, []);
 
-  // const serviceOptions = [
-  //   {
-  //     label: "MASSAGE & SCRUBS",
-  //     options: [
-  //       {
-  //         label: "Shea Butter Museum Experience",
-  //         value: "Shea Butter Museum Experience",
-  //       },
-  //       {
-  //         label: "Make Your Own Shea Butter",
-  //         value: "Make Your Own Shea Butter",
-  //       },
-  //       {
-  //         label: "Kuriya Kuriya Spa Experience",
-  //         value: "Kuriya Kuriya Spa Experience",
-  //       },
-  //       {
-  //         label: "Authentic Dining Experience",
-  //         value: "Authentic Dining Experience",
-  //       },
-  //       {
-  //         label: "Private Group Experience",
-  //         value: "Private Group Experience",
-  //       },
-  //       { label: "Facial Treatment", value: "Facial Treatment" },
-  //       { label: "Herbal Steam Therapy", value: "Herbal Steam Therapy" },
-  //       {
-  //         label: "Foot Ritual with Shea Butter",
-  //         value: "Foot Ritual with Shea Butter",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     label: "WELLNESS CLASSES",
-  //     options: [
-  //       {
-  //         label: "Morning Yoga by the Pool",
-  //         value: "Morning Yoga by the Pool",
-  //       },
-  //       {
-  //         label: "Sunset Yoga on the Terrace",
-  //         value: "Sunset Yoga on the Terrace",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     label: "WELLNESS PACKAGES",
-  //     options: [
-  //       {
-  //         label: "Girls Private Experience",
-  //         value: "Girls Private Experience",
-  //       },
-  //       { label: "Chef Shea", value: "Chef Shea" },
-  //       { label: "Shea Combo", value: "Shea Combo" },
-  //     ],
-  //   },
-  // ];
-
   const serviceOptions = [
     {
       label: "TOURS & EDUCATION",
       options: [
-        {
-          label: "Shea Butter Museum Experience",
-          value: "Shea Butter Museum Experience",
-        },
-        {
-          label: "Make Your Own Shea Butter",
-          value: "Make Your Own Shea Butter",
-        },
+        { label: "Shea Butter Museum Experience", value: "Shea Butter Museum Experience" },
+        { label: "Make Your Own Shea Butter", value: "Make Your Own Shea Butter" },
       ],
     },
     {
       label: "SPA EXPERIENCES",
       options: [
-        {
-          label: "Korea Korea Spa Experience",
-          value: "Korea Korea Spa Experience",
-        },
-        {
-          label: "Private Group Experience",
-          value: "Private Group Experience",
-        },
-        {
-          label: "Facial Treatment",
-          value: "Facial Treatment",
-        },
-        {
-          label: "Herbal Steam Therapy",
-          value: "Herbal Steam Therapy",
-        },
-        {
-          label: "Foot Ritual with Shea Butter",
-          value: "Foot Ritual with Shea Butter",
-        },
+        { label: "Korea Korea Spa Experience", value: "Korea Korea Spa Experience" },
+        { label: "Private Group Experience", value: "Private Group Experience" },
+        { label: "Facial Treatment", value: "Facial Treatment" },
+        { label: "Herbal Steam Therapy", value: "Herbal Steam Therapy" },
+        { label: "Foot Ritual with Shea Butter", value: "Foot Ritual with Shea Butter" },
       ],
     },
     {
       label: "DINING EXPERIENCES",
       options: [
-        {
-          label: "Authentic Dining Experience",
-          value: "Authentic Dining Experience",
-        },
+        { label: "Authentic Dining Experience", value: "Authentic Dining Experience" },
       ],
     },
     {
       label: "WELLNESS CLASSES",
       options: [
-        {
-          label: "Morning Yoga by the Pool",
-          value: "Morning Yoga by the Pool",
-        },
-        {
-          label: "Sunset Yoga on the Terrace",
-          value: "Sunset Yoga on the Terrace",
-        },
+        { label: "Morning Yoga by the Pool", value: "Morning Yoga by the Pool" },
+        { label: "Sunset Yoga on the Terrace", value: "Sunset Yoga on the Terrace" },
       ],
     },
     {
       label: "WELLNESS PACKAGES",
       options: [
-        {
-          label: "Girls Private Experience",
-          value: "Girls Private Experience",
-        },
-        {
-          label: "Chef Shea",
-          value: "Chef Shea",
-        },
-        {
-          label: "Shea Combo",
-          value: "Shea Combo",
-        },
+        { label: "Girls Private Experience", value: "Girls Private Experience" },
+        { label: "Chef Shea", value: "Chef Shea" },
+        { label: "Shea Combo", value: "Shea Combo" },
       ],
     },
   ];
 
-  // SEARCH AVAILABLE SLOTS
-  const handleSearch = async () => {
-    if (!selectedDate) return;
-    if (!selectedService?.value) return;
+  // ─── TIME HELPERS ───────────────────────────────────────────────────────────
 
-    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
+  // Converts "9:00 AM" or "9:00 AM (GMT)" → "09:00" (24h, zero-padded)
+  // Handles the edge cases: 12:xx AM → 00:xx, 12:xx PM → 12:xx
+  const convertTo24Hour = (slot) => {
+    // Strip any "(GMT)" suffix
+    const cleaned = slot.replace(/\(GMT\)/i, "").trim();
+    const [timePart, modifier] = cleaned.split(" ");
+    let [hours, minutes] = timePart.split(":").map(Number);
+
+    if (modifier?.toUpperCase() === "AM") {
+      if (hours === 12) hours = 0;   // 12:xx AM → 00:xx (midnight edge case)
+    } else if (modifier?.toUpperCase() === "PM") {
+      if (hours !== 12) hours += 12; // 1–11 PM → 13–23; 12 PM stays 12
+    }
+
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+  };
+
+  // ─── SEARCH ─────────────────────────────────────────────────────────────────
+
+  const handleSearch = async () => {
+    // Use en-CA for YYYY-MM-DD format (Ghana local date)
+    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", { timeZone: "Africa/Accra" });
 
     setLoading(true);
-
-    const res = await fetch(
-      "https://sheaspa-backend.onrender.com/get-available-slots",
-      {
+    try {
+      const res = await fetch("http://localhost:5000/get-available-slots", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           date: formattedDate,
           service: selectedService?.value,
         }),
-      },
-    );
-
-    const data = await res.json();
-
-    setAvailableSlots(data.availableSlots || []);
-    setLoading(false);
+      });
+      const data = await res.json();
+      setAvailableSlots(data.availableSlots || []);
+    } catch {
+      toast.error("Could not fetch slots. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSearchInitiate = () => {
-    if (!selectedDate) {
-      toast.error("Please select a date");
-      return;
-    }
-    if (!selectedService?.value) {
-      toast.error("Please select a service");
-      return;
-    }
-
+    if (!selectedDate) { toast.error("Please select a date"); return; }
+    if (!selectedService?.value) { toast.error("Please select a service"); return; }
     handleSearch();
   };
 
-  const handleCustomerSubmit = (e) => {
-    e.preventDefault();
-    if (!customerDetails.name || !customerDetails.whatsapp) {
-      toast.error("Name and WhatsApp number are required");
-      return;
-    }
-    setIsCustomerModalOpen(false);
-    handleSlotClick(selectedSlot);
-  };
+  // ─── BOOKING ─────────────────────────────────────────────────────────────────
 
-  // CONVERT AM PM TO 24 HOUR
-  const convertTo24Hour = (time) => {
-    const [timePart, modifier] = time.split(" ");
-    let [hours, minutes] = timePart.split(":");
-
-    if (modifier === "PM" && hours !== "12") {
-      hours = parseInt(hours) + 12;
-    }
-
-    if (modifier === "AM" && hours === "12") {
-      hours = "00";
-    }
-
-    return `${hours}:${minutes}`;
-  };
-
-  // CREATE BOOKING
   const handleSlotClick = (slot) => {
     setSelectedSlot(slot);
     setIsCustomerModalOpen(true);
   };
 
   const confirmBooking = async (slot) => {
-    const startTime = convertTo24Hour(slot);
-
+    const startTime = convertTo24Hour(slot); // e.g. "09:00"
     const endHour = parseInt(startTime.split(":")[0]) + 1;
-    const endTime = `${endHour.toString().padStart(2, "0")}:00`;
+    const endTime = `${endHour.toString().padStart(2, "0")}:00`;   // e.g. "10:00"
 
-    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
+    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", { timeZone: "Africa/Accra" });
 
-    const response = await fetch(
-      "https://sheaspa-backend.onrender.com/create-booking",
-      {
+    console.log(`[confirmBooking] slot="${slot}" → startTime="${startTime}" endTime="${endTime}" date="${formattedDate}"`);
+
+    try {
+      const response = await fetch("http://localhost:5000/create-booking", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: customerDetails.name,
           service: selectedService?.value || "Massage",
           whatsapp: customerDetails.whatsapp,
           email: customerDetails.email || "",
           date: formattedDate,
-          startTime,
-          endTime,
+          startTime,  // "09:00" — clean 24h format, no AM/PM
+          endTime,    // "10:00"
         }),
-      },
-    );
+      });
 
-    const result = await response.json();
-    if (result.success) {
-      toast.success("Booking Confirmed!");
-    } else {
-      toast.error("Booking Failed");
+      const result = await response.json();
+      if (result.success) {
+        toast.success(
+          "Thanks for booking! Please check your email for confirmation.",
+          { style: { fontSize: "18px", padding: "16px", width: "600px" } }
+        );
+      } else {
+        toast.error("Booking failed. Please try again.");
+      }
+    } catch {
+      toast.error("Could not complete booking. Please try again.");
     }
   };
+
+  // ─── RENDER ──────────────────────────────────────────────────────────────────
+
   return (
     <section id="home" className="section hero bg-image-full">
       <ToastContainer
@@ -302,7 +192,9 @@ const Hero = () => {
         newestOnTop
         closeOnClick
         pauseOnHover
+        toastStyle={{ width: "420px", fontSize: "18px", padding: "20px" }}
       />
+
       <div className="z-index-1">
         <div className="container-default">
           <div className="inner-container _1070px center">
@@ -313,42 +205,10 @@ const Hero = () => {
                 alignItems: "center",
                 textAlign: "center",
                 gap: "1.5rem",
-                // background:"#c4a8828c"
               }}
             >
-              {/* <div className="overflow-hidden">
-                <h1
-                  ref={titleRef}
-                  className="display-10 text-light"
-                  style={{ transform: "translate3d(0,100%,0)" }}
-                >
-                  Not Just Any Massage
-                </h1>
-              </div>
-
-              <div
-                ref={subtitleRef}
-                className="inner-container _840px center"
-                style={{ opacity: 0 }}
-              >
-                <p
-                  className="text-neutra-200 display-2"
-                  style={{ marginBottom: "1.5rem" }}
-                >
-                  The Sheabutter Museum Wellness Spa is where luxury meets
-                  extreme comfort. With an attentive staff ready provide the
-                  best service in all of Africa, visitors will embark on a
-                  journey filled with tradition, authenticity. ano most
-                  importanly - relaxation. Join us and tap into the real African
-                  soft life.
-                </p>
-              </div> */}
-
               {/* BOOK TITLE */}
-              <div
-                className="overflow-hidden"
-                style={{ marginBottom: "-0.5rem" }}
-              >
+              <div className="overflow-hidden" style={{ marginBottom: "-0.5rem" }}>
                 <h2
                   className="display-8 text-light"
                   style={{
@@ -365,9 +225,6 @@ const Hero = () => {
 
               {/* SEARCH BAR */}
               <div className="search-bar">
-                {/* DATE PICKER */}
-
-                {/* AUTOCOMPLETE */}
                 <Select
                   options={serviceOptions}
                   placeholder="Search Services..."
@@ -386,25 +243,16 @@ const Hero = () => {
                   showYearDropdown
                   dropdownMode="select"
                   className="hero-datepicker"
-                  minDate={new Date()}
+                  minDate={new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Accra" }))}
                 />
-                {/* SEARCH BUTTON */}
                 <button className="search-btn" onClick={handleSearchInitiate}>
                   Search
                 </button>
               </div>
 
               {/* LOADING */}
-              {loading && (
-                <p style={{ color: "white" }}>Checking availability...</p>
-              )}
-              <ToastContainer
-                containerId="slotConfirm"
-                position="top-center"
-                autoClose={false}
-                newestOnTop
-                style={{ top: "40%" }}
-              />
+              {loading && <p style={{ color: "white" }}>Checking availability...</p>}
+
               {/* AVAILABLE SLOTS */}
               {availableSlots.length > 0 && (
                 <div className="slots-container">
@@ -419,15 +267,6 @@ const Hero = () => {
                   ))}
                 </div>
               )}
-              {/* <div
-                ref={buttonsRef}
-                className="buttons-row"
-                style={{ opacity: 0, justifyContent: "center" }}
-              >
-                <a href="#services" className="primary-button">
-                  All services
-                </a>
-              </div> */}
             </div>
           </div>
         </div>
@@ -447,7 +286,7 @@ const Hero = () => {
             transform:
               "translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
           }}
-        ></div>{" "}
+        ></div>
       </div>
 
       {/* CUSTOMER DETAILS MODAL */}
@@ -470,11 +309,7 @@ const Hero = () => {
               confirmBooking(selectedSlot);
               setIsCustomerModalOpen(false);
               setAvailableSlots([]);
-              setCustomerDetails({
-                name: "",
-                whatsapp: "",
-                email: "",
-              });
+              setCustomerDetails({ name: "", whatsapp: "", email: "" });
             }}
           >
             <div className="form-group">
@@ -486,10 +321,7 @@ const Hero = () => {
                 required
                 value={customerDetails.name}
                 onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    name: e.target.value,
-                  })
+                  setCustomerDetails({ ...customerDetails, name: e.target.value })
                 }
               />
             </div>
@@ -502,10 +334,7 @@ const Hero = () => {
                 required
                 value={customerDetails.whatsapp}
                 onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    whatsapp: e.target.value,
-                  })
+                  setCustomerDetails({ ...customerDetails, whatsapp: e.target.value })
                 }
               />
             </div>
@@ -517,10 +346,7 @@ const Hero = () => {
                 placeholder="Ex: john@example.com"
                 value={customerDetails.email}
                 onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    email: e.target.value,
-                  })
+                  setCustomerDetails({ ...customerDetails, email: e.target.value })
                 }
               />
             </div>
