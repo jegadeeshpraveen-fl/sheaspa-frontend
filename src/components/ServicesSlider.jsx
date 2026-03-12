@@ -4,10 +4,7 @@ import sheaButterMuseum from "../assets/images/shea-butter-museum.jpg";
 import footSpa from "../assets/images/foot spa.jpg";
 import girlsPrivateExp from "../assets/images/girls private experience.jpg";
 import chefShea from "../assets/images/chef shea.jpg";
-import hamamat from "../assets/images/Hamamat.jpg";
 import kuriya from "../assets/images/kuriya.jpg";
-import hamamatyellow from "../assets/images/hamamatyellow.jpg";
-import sheacombo from "../assets/images/shea combo.jpg";
 import poolsideYoga from "../assets/images/poolside yoga.jpg";
 import sunsetYoga from "../assets/images/west terrace sunset yoga.jpg";
 import steamImg from "../assets/images/steam.jpg";
@@ -16,167 +13,126 @@ import "react-datepicker/dist/react-datepicker.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+/* ---------------- SERVICES ---------------- */
+
 const services = [
   {
     id: 1,
     name: "Korea Korea Spa Experience",
     description: [
       "Our signature African wellness ritual.",
-      "This experience begins with a full-body African scrub using natural ingredients, followed by the Kuriya Kuriya Massage.",
-      "A relaxing massage using warm shea butter prepared by our village women.",
+      "Full-body African scrub using natural ingredients.",
+      "Warm shea butter massage.",
     ],
-    listLabel: "Includes:",
-    features: [
-      "African Body Scrub",
-      "Warm Shea Butter Massage",
-      "Herbal Relaxation Ritual",
-    ],
+    features: ["African Body Scrub", "Warm Shea Butter Massage", "Herbal Relaxation Ritual"],
     image: kuriya,
-    categoryLabel: "A/3 spa experience",
   },
   {
     id: 2,
     name: "Make Your Own Shea Butter",
     description: [
-      "Guests are invited to create their own personalized shea butter blend using fresh village shea butter and natural African ingredients.",
-      "Each guest leaves with their own custom shea butter creation.",
-      "Perfect for groups and families.",
+      "Guests create their own shea butter blend.",
+      "Using fresh village shea butter.",
+      "Take your custom butter home.",
     ],
-    listLabel: "Ideal for:",
-    desc: "Groups and families",
     features: [],
     image: chefShea,
-    categoryLabel: "A/2 shea experience",
   },
   {
     id: 3,
     name: "Shea Butter Museum Experience",
     description: [
-      "A guided tour through the Hamamat Shea Butter Museum where guests discover the history of African beauty traditions and the cultural importance of shea butter.",
-      "Guests will also explore our famous Shea Butter Wall featuring butter from across Africa.",
+      "Guided tour through the Hamamat Shea Museum.",
+      "Learn African beauty traditions.",
     ],
     features: [],
     image: sheaButterMuseum,
-    categoryLabel: "A/1 shea experience",
-    location: "102 Kofi Annan St, Airport Residential, Accra",
   },
   {
     id: 4,
-    name: "Authentic Dining Experience",
-    description: [
-      "Guests enjoy authentic African cuisine prepared by our private chef using fresh traditional ingredients.",
-      "A refined village dining experience celebrating African flavors and hospitality.",
-    ],
-    features: ["Lunch", "Drinks", "Desserts & fresh tropical fruits"],
-    image: chefShea,
-    categoryLabel: "A/4 dining",
+    name: "Private Group Experience",
+    description: ["Perfect for groups visiting Ghana."],
+    features: ["Museum Tour", "Shea Butter Workshop", "Wellness Treatments", "African Dinner"],
+    image: girlsPrivateExp,
   },
   {
     id: 5,
-    name: "Private Group Experience",
-    description: [
-      "Perfect for large groups visiting Ghana as the experience package is customizable.",
-    ],
-    features: [
-      "Museum Tour",
-      "Shea Butter Making Workshop",
-      "Wellness Treatments",
-      "Traditional African Dinner/Lunch",
-    ],
-    image: girlsPrivateExp,
-    categoryLabel: "A/5 spa experience",
+    name: "Facial Treatment",
+    description: ["Gentle cleanse and exfoliation.", "Restorative shea butter facial massage."],
+    features: ["Natural Facial Cleanse", "African Facial Exfoliation"],
+    image: facialsImg,
   },
   {
     id: 6,
-    name: "Facial Treatment",
-    description: [
-      "This experience begins with a gentle cleanse and exfoliation using natural African ingredients.",
-      "Followed by a restorative facial massage with warm shea butter prepared by our village women.",
-    ],
-    features: [
-      "Natural Facial Cleanse",
-      "African Facial Exfoliation",
-      "Shea Butter Facial Massage",
-    ],
-    image: facialsImg,
-    categoryLabel: "A/6 spa experience",
+    name: "Herbal Steam Therapy",
+    description: ["Calming herbal steam bath.", "Promotes purification and relaxation."],
+    features: ["Traditional Herbal Steam", "African Botanicals"],
+    image: steamImg,
   },
   {
     id: 7,
-    name: "Herbal Steam Therapy",
-    description: [
-      "A calming herbal steam bath infused with natural African botanical herbs.",
-      "The warm steam opens pores, relaxes the body, and promotes purification.",
-    ],
-    features: [
-      "Traditional Herbal Steam Bath",
-      "Natural African Botanicals",
-      "Relaxation Ritual",
-    ],
-    image: steamImg,
-    categoryLabel: "A/7 spa experience",
+    name: "Foot Ritual With Shea Butter",
+    description: ["Warm herbal foot soak and massage."],
+    features: ["Foot Soak", "Shea Butter Massage"],
+    image: footSpa,
   },
   {
     id: 8,
-    name: "Foot Ritual With Shea Butter",
-    description: [
-      "A warm herbal foot soak followed by a gentle exfoliation using natural African ingredients.",
-      "Finished with a soothing shea butter foot massage.",
-    ],
-    listLabel: "Includes:",
-    features: [
-      "Herbal Foot Soak",
-      "African Foot Exfoliation",
-      "Warm Shea Butter Foot Massage",
-    ],
-    image: footSpa,
-    categoryLabel: "A/8 spa experience",
+    name: "Morning Yoga By The Pool",
+    description: ["Gentle yoga session beside the pool."],
+    features: ["Guided Yoga", "Breathwork"],
+    image: poolsideYoga,
   },
   {
     id: 9,
-    name: "Morning Yoga By The Pool",
-    description: [
-      "Begin the day with a gentle yoga session beside the pool.",
-      "Guided breathing and flowing movements help relax the body and mind.",
-    ],
-    listLabel: "Features:",
-    features: [
-      "Guided Morning Yoga Session",
-      "Breathwork & Gentle Stretching",
-      "Poolside Relaxation",
-    ],
-    image: poolsideYoga,
-    categoryLabel: "A/9 wellness",
-  },
-  {
-    id: 10,
     name: "Sunset Yoga On The Terrace",
-    description: [
-      "End the day with a peaceful yoga session on the terrace at sunset.",
-      "Golden light fills the sky while gentle stretching and breathing release tension.",
-    ],
-    features: [
-      "Guided Sunset Yoga Session",
-      "Gentle Stretching & Breathwork",
-      "Terrace Poolside Relaxation",
-    ],
+    description: ["Relaxing sunset yoga session."],
+    features: ["Guided Yoga", "Breathwork"],
     image: sunsetYoga,
-    categoryLabel: "A/10 wellness",
   },
 ];
 
+const SLIDE_WIDTH = 240;
+const SLIDE_GAP = 20;
+
+/* ---------------- TIME HELPERS ---------------- */
+
+// Converts "9:00 AM", "9:00 AM (GMT)", or "09:00" → "09:00" (24h, zero-padded)
+// Correctly handles edge cases: 12:xx AM → 00:xx, 12:xx PM → 12:xx
+const convertTo24Hour = (slot) => {
+  // Strip any "(GMT)" label
+  const cleaned = slot.replace(/\(GMT\)/i, "").trim();
+
+  // Already 24h — no AM/PM present
+  if (!cleaned.toLowerCase().includes("am") && !cleaned.toLowerCase().includes("pm")) {
+    return cleaned.trim();
+  }
+
+  const parts = cleaned.trim().split(" ");
+  const timePart = parts[0];
+  const modifier = parts[1];
+  let [hours, minutes] = timePart.split(":").map(Number);
+
+  if (modifier?.toUpperCase() === "AM") {
+    if (hours === 12) hours = 0;   // 12:xx AM → 00:xx (midnight)
+  } else if (modifier?.toUpperCase() === "PM") {
+    if (hours !== 12) hours += 12; // 1–11 PM → 13–23; 12 PM stays 12
+  }
+
+  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+};
+
+/* ---------------- COMPONENT ---------------- */
+
 const ServicesSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [translateX, setTranslateX] = useState(0);
-  const trackRef = useRef(null);
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showAllServices, setShowAllServices] = useState(false);
+
+  // Booking state
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Accra" })));
   const [availableSlots, setAvailableSlots] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isCustomerDetailsStep, setIsCustomerDetailsStep] = useState(false);
@@ -187,72 +143,53 @@ const ServicesSlider = () => {
   });
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-  const slideWidth = 330 + 32; // width + gap
+  const trackRef = useRef(null);
 
+  /* Detect mobile */
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 },
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  /* Desktop slider controls */
+  const maxIndex = services.length - 3;
   const prev = () => setCurrentIndex((i) => Math.max(0, i - 1));
-  const next = () =>
-    setCurrentIndex((i) => Math.min(services.length - 3, i + 1));
+  const next = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
+  const offset = -currentIndex * (SLIDE_WIDTH + SLIDE_GAP);
 
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.clientX);
-  };
+  /* Mobile: first 2 initially, all after View More */
+  const visibleServices = showAllServices ? services : services.slice(0, 2);
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    setTranslateX(e.clientX - startX);
-  };
-
-  const handleMouseUp = () => {
-    if (translateX < -50) next();
-    if (translateX > 50) prev();
-    setIsDragging(false);
-    setTranslateX(0);
-  };
-
+  /* Booking handlers */
   const handleBookNow = (service) => {
     setSelectedService(service);
     setIsBookingModalOpen(true);
     setIsCustomerDetailsStep(false);
     setAvailableSlots([]);
+    setSelectedSlot(null);
+    setCustomerDetails({ name: "", whatsapp: "", email: "" });
+    setSelectedDate(new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Accra" })));
   };
 
   const handleSearchSlots = async () => {
     if (!selectedDate || !selectedService) return;
-
-    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
+    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", { timeZone: "Africa/Accra" });
     setLoading(true);
-
     try {
-      const res = await fetch(
-        "https://sheaspa-backend.onrender.com/get-available-slots",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            date: formattedDate,
-            service: selectedService.name,
-          }),
-        },
-      );
+      const res = await fetch("http://localhost:5000/get-available-slots", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: formattedDate,
+          service: selectedService.name,
+        }),
+      });
       const data = await res.json();
       setAvailableSlots(data.availableSlots || []);
-    } catch (error) {
-      toast.error("Failed to fetch slots");
+    } catch {
+      toast.error("Failed to fetch slots. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -263,223 +200,167 @@ const ServicesSlider = () => {
     setIsCustomerDetailsStep(true);
   };
 
-  const handleCustomerSubmit = (e) => {
-    e.preventDefault();
-    if (!customerDetails.name || !customerDetails.whatsapp) {
-      toast.error("Name and WhatsApp are required");
-      return;
-    }
-    const slot = selectedSlot;
-    setIsCustomerDetailsStep(false);
-    toast(
-      ({ closeToast }) => (
-        <div>
-          <p className="mg-bottom-small">
-            Are you sure you want to book <b>{slot}</b>?
-          </p>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <button
-              className="primary-button"
-              style={{
-                padding: "6px 12px",
-                background: "#28a745",
-                fontSize: "0.875rem",
-              }}
-              onClick={() => {
-                closeToast();
-                confirmBooking(slot);
-              }}
-            >
-              Yes
-            </button>
-            <button
-              className="secondary-button"
-              style={{
-                padding: "6px 12px",
-                background: "#ccc",
-                fontSize: "0.875rem",
-                color: "#333",
-              }}
-              onClick={closeToast}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      ),
-      { autoClose: false },
-    );
-  };
-
   const confirmBooking = async (slot) => {
     if (!customerDetails.name || !customerDetails.whatsapp) {
       toast.error("Name and WhatsApp are required");
       return;
     }
-    const convertTo24Hour = (time) => {
-      const [timePart, modifier] = time.split(" ");
-      let [hours, minutes] = timePart.split(":");
-      if (modifier === "PM" && hours !== "12") hours = parseInt(hours) + 12;
-      if (modifier === "AM" && hours === "12") hours = "00";
-      return `${hours}:${minutes}`;
-    };
 
-    const startTime = convertTo24Hour(slot);
+    const startTime = convertTo24Hour(slot);        // e.g. "09:00"
     const endHour = parseInt(startTime.split(":")[0]) + 1;
-    const endTime = `${endHour.toString().padStart(2, "0")}:00`;
-    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA");
+    const endTime = `${endHour.toString().padStart(2, "0")}:00`; // e.g. "10:00"
+    const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", { timeZone: "Africa/Accra" });
+
+    console.log(`[confirmBooking] slot="${slot}" → startTime="${startTime}" endTime="${endTime}" date="${formattedDate}"`);
 
     try {
-      const response = await fetch(
-        "https://sheaspa-backend.onrender.com/create-booking",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: customerDetails.name,
-            service: selectedService.name,
-            whatsapp: customerDetails.whatsapp,
-            email: customerDetails.email || "",
-            date: formattedDate,
-            startTime,
-            endTime,
-          }),
-        },
-      );
-
+      const response = await fetch("http://localhost:5000/create-booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: customerDetails.name,
+          service: selectedService.name,
+          whatsapp: customerDetails.whatsapp,
+          email: customerDetails.email || "",
+          date: formattedDate,
+          startTime,  // clean 24h "09:00"
+          endTime,    // clean 24h "10:00"
+        }),
+      });
       const result = await response.json();
       if (result.success) {
-        toast.success("Booking Confirmed!");
+        toast.success(
+          "Thanks for booking! Please check your email for confirmation.",
+          { style: { fontSize: "18px", padding: "16px", width: "600px" } }
+        );
         setIsBookingModalOpen(false);
       } else {
-        toast.error("Booking Failed");
+        toast.error("Booking failed. Please try again.");
       }
-    } catch (error) {
-      toast.error("Error creating booking");
+    } catch {
+      toast.error("Error creating booking. Please try again.");
     }
   };
 
-  const offset = -currentIndex * slideWidth + translateX;
+  /* Reusable card */
+  const ServiceCard = ({ service, isMobile }) => (
+    <div className="grid-1-column gap-row-medium">
+      <div className={`picture-mask _11 ${isMobile ? "mobile-class" : ""}`}>
+        <img
+          src={service.image}
+          alt={service.name}
+          className="image fit-cover _w-h-100"
+          draggable="false"
+        />
+      </div>
+      <div className="service-content service-card">
+        <div className="flex-horizontal space-between align-center">
+          <h3 className="heading display-4 service-title">{service.name}</h3>
+          <div className="service-price mg-top-small mg-bottom-small">$325.99</div>
+        </div>
+        <div className="service-text">
+          {service.description.map((d, i) => (
+            <p className="mg-top-extra-small" key={i}>{d}</p>
+          ))}
+          <p className="mg-top-extra-small">📍 102 Kofi Annan St, Airport West Residential</p>
+          {service.features.length > 0 && (
+            <>
+              <p className="mg-top-extra-small">Includes:</p>
+              <ul className="service-features mg-top-small mg-bottom-small">
+                {service.features.map((f, i) => (
+                  <li className="mg-top-extra-small" key={i}>{f}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+        <div className="buttons-row">
+          <button className="primary-button" onClick={() => handleBookNow(service)}>
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <section
-      id="services"
-      className="section top-bottom-90px overflow-hidden"
-      ref={sectionRef}
-    >
-      {/* <div className="container-default"> */}
+    <section id="services" className="section top-bottom-90px overflow-hidden">
       <div className="mg-left-medium mg-right-medium">
-        {/* Header */}
         <div className="mg-bottom-80px">
           <div className="flex-horizontal space-between gap-default-wrap">
             <div className="overflow-hidden">
-              <h2
-                ref={titleRef}
-                className={`display-8 reveal-up ${visible ? "visible" : ""}`}
-              >
-                OUR TOP SERVICES
-              </h2>
+              <h2 className="display-8">OUR TOP SERVICES</h2>
             </div>
-            {/* <div className={`buttons-row reveal-fade ${visible ? 'visible' : ''}`}>
-              <a href="#all-services" className="secondary-button">
-                <div>All services</div>
-              </a>
-            </div> */}
           </div>
         </div>
 
-        {/* Slider */}
-        <div
-          className={`slider-wrapper reveal-fade ${visible ? "visible" : ""}`}
-          style={{ position: "relative" }}
-        >
-          <div
-            className="slider-mask"
-            style={{
-              overflow: "hidden",
-              cursor: isDragging ? "grabbing" : "grab",
-            }}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-          >
-            <div
-              ref={trackRef}
-              className="slider-track"
-              style={{
-                transform: `translateX(${offset}px)`,
-                transition: isDragging ? "none" : "transform 0.5s ease",
-              }}
-            >
-              {services.map((service) => (
-                <div
-                  key={service.id}
-                  className="slide-item mg-right-extra-large"
-                  style={{ width: 240 }}
-                >
-                  <div className="grid-1-column gap-row-medium">
-                    <div className="picture-mask _11">
-                      <img
-                        src={service.image}
-                        alt={service.name}
-                        className="image fit-cover _w-h-100"
-                        draggable="false"
-                      />
-                    </div>
-
-                    <div className="service-content service-card">
-                      <div className="flex-horizontal space-between align-center">
-                        <h3 className="heading display-4 service-title">
-                          {service.name}
-                        </h3>
-                        <div className="service-price mg-top-small mg-bottom-small">
-                          $325.99
+        {/* ── DESKTOP: Arrow Slider ── */}
+        {!isMobile && (
+          <div className="slider-wrapper" style={{ position: "relative" }}>
+            <div className="slider-mask" style={{ overflow: "hidden", cursor: "grab" }}>
+              <div
+                ref={trackRef}
+                className="slider-track"
+                style={{
+                  display: "flex",
+                  gap: `${SLIDE_GAP}px`,
+                  transform: `translateX(${offset}px)`,
+                  transition: "transform 0.5s ease",
+                }}
+              >
+                {services.map((service) => (
+                  <div
+                    key={service.id}
+                    className="slide-item mg-right-extra-large"
+                    style={{ width: 240 }}
+                  >
+                    <div className="grid-1-column gap-row-medium">
+                      <div className="picture-mask _11">
+                        <img
+                          src={service.image}
+                          alt={service.name}
+                          className="image fit-cover _w-h-100"
+                          draggable="false"
+                        />
+                      </div>
+                      <div className="service-content service-card">
+                        <div className="flex-horizontal space-between align-center">
+                          <h3 className="heading display-4 service-title">{service.name}</h3>
+                          <div className="service-price mg-top-small mg-bottom-small">$325.99</div>
                         </div>
-                      </div>
-
-                      <div className="service-text">
-                        {service.description.map((desc, index) => (
-                          <p className="mg-top-extra-small" key={index}>
-                            {desc}
+                        <div className="service-text">
+                          {service.description.map((desc, index) => (
+                            <p className="mg-top-extra-small" key={index}>{desc}</p>
+                          ))}
+                          <p className="mg-top-extra-small">
+                            📍 102 Kofi Annan St, Airport West Residential
                           </p>
-                        ))}
-                        <p className="mg-top-extra-small">
-                          📍 102 Kofi Annan St, Airport West Residential
-                        </p>
-
-                        {service.features.length > 0 && (
-                          <>
-                            <p className="mg-top-extra-small">Includes:</p>
-
-                            <ul className="service-features mg-top-small mg-bottom-small">
-                              {service.features.map((feature, index) => (
-                                <li className="mg-top-extra-small" key={index}>
-                                  {feature}
-                                </li>
-                              ))}
-                            </ul>
-                          </>
-                        )}
-                      </div>
-
-                      <div className="buttons-row">
-                        <button
-                          className="primary-button"
-                          onClick={() => handleBookNow(service)}
-                        >
-                          Book Now
-                        </button>
+                          {service.features.length > 0 && (
+                            <>
+                              <p className="mg-top-extra-small">Includes:</p>
+                              <ul className="service-features mg-top-small mg-bottom-small">
+                                {service.features.map((feature, index) => (
+                                  <li className="mg-top-extra-small" key={index}>{feature}</li>
+                                ))}
+                              </ul>
+                            </>
+                          )}
+                        </div>
+                        <div className="buttons-row">
+                          <button
+                            className="primary-button"
+                            onClick={() => handleBookNow(service)}
+                          >
+                            Book Now
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Arrows */}
-          <div className="">
             <button
               className="slider-button left-v7"
               onClick={prev}
@@ -492,20 +373,40 @@ const ServicesSlider = () => {
             <button
               className="slider-button right-v7"
               onClick={next}
-              disabled={currentIndex >= services.length - 3}
-              style={{ opacity: currentIndex >= services.length - 3 ? 0.3 : 1 }}
+              disabled={currentIndex >= maxIndex}
+              style={{ opacity: currentIndex >= maxIndex ? 0.3 : 1 }}
               aria-label="Next"
             >
               →
             </button>
           </div>
-        </div>
+        )}
+
+        {/* ── MOBILE: 1 per row, first 2 only, then View More ── */}
+        {isMobile && (
+          <>
+            <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+              {visibleServices.map((service) => (
+                <div key={service.id}>
+                  <ServiceCard service={service} isMobile={isMobile} />
+                </div>
+              ))}
+            </div>
+            {!showAllServices && (
+              <div className="buttons-row" style={{ justifyContent: "center", marginTop: "30px" }}>
+                <button className="secondary-button" onClick={() => setShowAllServices(true)}>
+                  View More Services
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
 
-      {/* BOOKING MODAL */}
+      {/* ── BOOKING MODAL ── */}
       {isBookingModalOpen && (
         <div
-          className={`modal-overlay open`}
+          className="modal-overlay open"
           onClick={() => setIsBookingModalOpen(false)}
         >
           <div
@@ -529,9 +430,8 @@ const ServicesSlider = () => {
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
                     dateFormat="dd MMM yyyy"
-                    minDate={new Date()}
+                    minDate={new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Accra" }))}
                     className="form-input"
-                    style={{ width: "100%" }}
                   />
                 </div>
                 <button
@@ -550,10 +450,7 @@ const ServicesSlider = () => {
                     >
                       Available Slots:
                     </label>
-                    <div
-                      className="slots-container"
-                      style={{ justifyContent: "center" }}
-                    >
+                    <div className="slots-container" style={{ justifyContent: "center" }}>
                       {availableSlots.map((slot, index) => (
                         <div
                           key={index}
@@ -573,10 +470,9 @@ const ServicesSlider = () => {
                 onSubmit={(e) => {
                   e.preventDefault();
                   confirmBooking(selectedSlot);
-                  setIsBookingModalOpen(false);
                   setIsCustomerDetailsStep(false);
                   setSelectedSlot(null);
-                  setSelectedDate(new Date());
+                  setSelectedDate(new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Accra" })));
                   setAvailableSlots([]);
                   setCustomerDetails({ name: "", whatsapp: "", email: "" });
                 }}
@@ -593,10 +489,7 @@ const ServicesSlider = () => {
                     required
                     value={customerDetails.name}
                     onChange={(e) =>
-                      setCustomerDetails({
-                        ...customerDetails,
-                        name: e.target.value,
-                      })
+                      setCustomerDetails({ ...customerDetails, name: e.target.value })
                     }
                   />
                 </div>
@@ -609,10 +502,7 @@ const ServicesSlider = () => {
                     required
                     value={customerDetails.whatsapp}
                     onChange={(e) =>
-                      setCustomerDetails({
-                        ...customerDetails,
-                        whatsapp: e.target.value,
-                      })
+                      setCustomerDetails({ ...customerDetails, whatsapp: e.target.value })
                     }
                   />
                 </div>
@@ -624,10 +514,7 @@ const ServicesSlider = () => {
                     placeholder="Ex: john@example.com"
                     value={customerDetails.email}
                     onChange={(e) =>
-                      setCustomerDetails({
-                        ...customerDetails,
-                        email: e.target.value,
-                      })
+                      setCustomerDetails({ ...customerDetails, email: e.target.value })
                     }
                   />
                 </div>
@@ -647,6 +534,7 @@ const ServicesSlider = () => {
           </div>
         </div>
       )}
+
       <ToastContainer position="top-center" autoClose={3000} />
     </section>
   );
