@@ -171,8 +171,18 @@ const Hero = () => {
       if (result.success) {
         toast.success(
           "Thanks for booking! Please check your email for confirmation.",
-          { style: { fontSize: "18px", padding: "16px", width: "600px" } }
+          {
+            style: {
+              fontSize: "16px",
+              padding: "14px",
+              maxWidth: "90vw"
+            }
+          }
         );
+        // toast.success(
+        //   "Thanks for booking! Please check your email for confirmation.",
+        //   { style: { fontSize: "18px", padding: "16px", width: "600px" } }
+        // );
       } else {
         toast.error("Booking failed. Please try again.");
       }
