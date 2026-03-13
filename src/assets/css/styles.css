@@ -43784,3 +43784,6 @@ border-bottom: 5px solid #8b6f47;
 .Toastify__toast-icon svg {
   fill: #8b6f47;
 }
+.Toastify__progress-bar--error {
+border-bottom: 5px solid #8b6f47;
+}
