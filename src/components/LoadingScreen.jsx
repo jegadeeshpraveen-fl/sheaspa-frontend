@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import hamamatLogo from "../assets/images/hamamatlog.png"
 
 const LoadingScreen = ({ onDone }) => {
   const [hiding, setHiding] = useState(false);
@@ -32,7 +33,9 @@ const LoadingScreen = ({ onDone }) => {
     >
       {/* Logo / brand during loading */}
       <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-        <div className="logo-text">SHEABUTTER</div>
+        <img style={{ width: 250 }} src={hamamatLogo} />
+
+        {/* <div className="logo-text">SHEABUTTER</div>
         <div
           style={{
             fontFamily: "Inter, sans-serif",
@@ -44,7 +47,7 @@ const LoadingScreen = ({ onDone }) => {
           }}
         >
           SPA & WELLNESS
-        </div>
+        </div> */}
       </div>
 
       {/* Loading bar */}

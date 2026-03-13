@@ -113,7 +113,7 @@ const Hero = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/get-available-slots", {
+      const res = await fetch("https://sheaspa-backend.onrender.com/get-available-slots", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -153,7 +153,7 @@ const Hero = () => {
     console.log(`[confirmBooking] slot="${slot}" → startTime="${startTime}" endTime="${endTime}" date="${formattedDate}"`);
 
     try {
-      const response = await fetch("http://localhost:5000/create-booking", {
+      const response = await fetch("https://sheaspa-backend.onrender.com/create-booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -219,7 +219,7 @@ const Hero = () => {
                     marginBottom: "2rem",
                   }}
                 >
-                  BOOK THE EXPERIENCE
+                  BOOK AN EXPERIENCE
                 </h2>
               </div>
 

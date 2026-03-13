@@ -288,6 +288,9 @@ p {
 .mg-bottom-large {
   margin-bottom: 3rem;
 }
+.mg-bottom-90px {
+  margin-bottom: 6rem;
+}
 .mg-bottom-80px {
   margin-bottom: 5rem;
 }
@@ -405,7 +408,7 @@ p {
   gap: 1rem;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: auto;
+  margin-top: 20px;
 }
 
 .buttons-row.left {
@@ -36716,7 +36719,7 @@ figcaption {
 .buttons-row {
   grid-column-gap: var(--globals--gaps--gap-small);
   grid-row-gap: var(--globals--gaps--gap-small);
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   display: flex;
 }
@@ -43592,6 +43595,8 @@ figcaption {
 .service-features {
   padding-left: 18px;
   margin-top: 10px;
+  margin-bottom : 0px;
+  
 }
 
 .service-features li {
