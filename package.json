@@ -2,6 +2,9 @@
   "name": "zen-spa",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-datepicker": "^9.1.0",
@@ -13,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "CI=false react-scripts build"
   },
   "browserslist": {
     "production": [

@@ -14,13 +14,13 @@ const CheckIcon = () => (
 );
 
 const timings = [
-  "Sunday 10:00 AM – 7:00 PM",
-  "Monday 10:00 AM – 7:00 PM",
-  "Tuesday 10:00 AM – 7:00 PM",
-  "Wednesday 10:00 AM – 7:00 PM",
-  "Thursday 10:00 AM – 7:00 PM",
-  "Friday 10:00 AM – 7:00 PM",
-  "Saturday 10:00 AM – 7:00 PM",
+  "Sunday : 01:00 PM – 06:00 PM",
+  "Monday : Closed",
+  "Tuesday : 09:00 AM – 05:00 PM",
+  "Wednesday : 09:00 AM – 05:00 PM",
+  "Thursday : 09:00 AM – 05:00 PM",
+  "Friday : 09:00 AM – 05:00 PM",
+  "Saturday :  09:00 AM – 05:00 PM",
 ];
 
 const VisitAndContact = () => {
@@ -81,9 +81,9 @@ const VisitAndContact = () => {
             <h2 className="display-7 mg-bottom-medium mg-top-tiny">LOCATION</h2>
             <div className="picture-description v1">
               <p style={{ marginBottom: "10px" }}>
-                📍 123 Wellness Street, Spa City
+                📍 102 Kofi Annan St, Airport West Residential
               </p>
-              <p style={{ marginBottom: "15px" }}>📞 +91 9876543210</p>
+              <p style={{ marginBottom: "15px" }}>📞 0503312362</p>
             </div>
 
             {/* GOOGLE MAP */}
@@ -96,10 +96,10 @@ const VisitAndContact = () => {
               <iframe
                 title="spa-location"
                 width="100%"
-                height="250"
+                height="200"
                 frameBorder="0"
                 style={{ border: 0 }}
-                src="https://www.google.com/maps?q=UK&output=embed"
+                src="https://maps.google.com/maps?q=Hamamat+Sheabutter+Spa,+102+Kofi+Annan+St,+Airport+West+Residential,+Accra,+Ghana&z=17&output=embed"
                 allowFullScreen
               ></iframe>
             </div>

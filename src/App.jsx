@@ -38,7 +38,7 @@ function App() {
         {/* <SpaProducts /> */}
         {/* <Testimonials /> */}
         {/* <SocialFollow /> */}
-        <VisitAndContact/>
+        <VisitAndContact />
         {/* <BlogSection /> */}
         <Footer />
       </div>

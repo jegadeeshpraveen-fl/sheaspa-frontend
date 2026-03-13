@@ -127,7 +127,6 @@ const convertTo24Hour = (slot) => {
 const ServicesSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [showAllServices, setShowAllServices] = useState(false);
 
   // Booking state
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -160,6 +159,16 @@ const ServicesSlider = () => {
   const offset = -currentIndex * (SLIDE_WIDTH + SLIDE_GAP);
 
   /* Mobile: first 2 initially, all after View More */
+  const [showAllServices, setShowAllServices] = useState(
+    () => window.location.hash === '#services'
+  );
+  useEffect(() => {
+    const onHashChange = () => {
+      if (window.location.hash === "#services") setShowAllServices(true);
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
   const visibleServices = showAllServices ? services : services.slice(0, 2);
 
   /* Booking handlers */
@@ -178,7 +187,7 @@ const ServicesSlider = () => {
     const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", { timeZone: "Africa/Accra" });
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/get-available-slots", {
+      const res = await fetch("https://sheaspa-backend.onrender.com/get-available-slots", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -214,7 +223,7 @@ const ServicesSlider = () => {
     console.log(`[confirmBooking] slot="${slot}" → startTime="${startTime}" endTime="${endTime}" date="${formattedDate}"`);
 
     try {
-      const response = await fetch("http://localhost:5000/create-booking", {
+      const response = await fetch("https://sheaspa-backend.onrender.com/create-booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -312,7 +321,7 @@ const ServicesSlider = () => {
                   <div
                     key={service.id}
                     className="slide-item mg-right-extra-large"
-                    style={{ width: 240 }}
+                    style={{ width: 240, display: "flex", alignItems: "baseline" }}
                   >
                     <div className="grid-1-column gap-row-medium">
                       <div className="picture-mask _11">
@@ -387,13 +396,13 @@ const ServicesSlider = () => {
           <>
             <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
               {visibleServices.map((service) => (
-                <div key={service.id}>
+                <div key={service.id} className="mg-bottom-74px">
                   <ServiceCard service={service} isMobile={isMobile} />
                 </div>
               ))}
             </div>
             {!showAllServices && (
-              <div className="buttons-row" style={{ justifyContent: "center", marginTop: "30px" }}>
+              <div className="buttons-row" style={{ justifyContent: "center", marginTop: "0px" }}>
                 <button className="secondary-button" onClick={() => setShowAllServices(true)}>
                   View More Services
                 </button>
